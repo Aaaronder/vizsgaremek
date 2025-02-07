@@ -1,0 +1,61 @@
+http://localhost:3000/register
+- Method: POST
+- Request Body: { "felhasznalo": "string", "jelszo": "string", "jelszo2": "string" }
+- Response: { "success": true }
+- Function: Regisztrál egy új felhasználót az adatbázisban.
+
+http://localhost:3000/login
+- Method: POST
+- Request Body: { "felhasznalo": "string", "jelszo": "string" }
+- Response: { "success": true }
+- Function: Bejelentkezteti a felhasználót, ha a hitelesítési adatok helyesek.
+
+http://localhost:3000/befizetesek
+- Method: GET
+- Response: { "befizetesek": [ { "id": 1, "osszeg": 1000, "datum": "2024-02-05" }, ... ] }
+- Function: Lekéri a felhasználó befizetéseinek listáját.
+
+http://localhost:3000/upload_song
+- Method: POST
+- Request Body: { "songName": "string", "songArtist": "string", "songGenre": "string", "songInstrument": "string", "file": "mp3" }
+- Response: { "success": true }
+- Function: Feltölti a felhasználó által megadott zenefájlt a rendszerbe.
+
+http://localhost:3000/download_song/:songId
+- Method: GET
+- Response: { "file": "mp3" }
+- Function: Letölti a megadott azonosítójú zenét az adatbázisból.
+
+http://localhost:3000/playlists
+- Method: GET
+- Response: { "playlists": [ { "plId": 1, "plName": "string", "plOwnerId": 1 }, ... ] }
+- Function: Lekéri a felhasználó által létrehozott lejátszási listákat.
+
+http://localhost:3000/create_playlist
+- Method: POST
+- Request Body: { "plName": "string", "plOwnerId": 1 }
+- Response: { "success": true }
+- Function: Létrehoz egy új lejátszási listát a megadott névvel és tulajdonossal.
+
+http://localhost:3000/add_to_playlist
+- Method: POST
+- Request Body: { "plId": 1, "songId": 1 }
+- Response: { "success": true }
+- Function: Hozzáad egy zenét egy adott lejátszási listához.
+
+http://localhost:3000/remove_from_playlist
+- Method: DELETE
+- Request Body: { "plId": 1, "songId": 1 }
+- Response: { "success": true }
+- Function: Eltávolít egy adott zenét egy adott lejátszási listából.
+
+http://localhost:3000/delete_playlist/:plId
+- Method: DELETE
+- Response: { "success": true }
+- Function: Töröl egy adott lejátszási listát az adatbázisból.
+
+http://localhost:3000/browse
+- Method: GET
+- Query Params: { "search": "string", "genre": "string", "instrument": "string", "artist": "string" }
+- Response: { "songs": [ { "songId": 1, "songName": "string", "songArtist": "string" }, ... ] }
+- Function: Keresési funkció, amely lehetővé teszi a zenék szűrését különböző paraméterek alapján.
