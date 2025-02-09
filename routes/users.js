@@ -23,3 +23,5 @@ router.post('/register', async (req, res) => {
     res.header('Content-Type', 'application/json');
     res.status(201).send(newUser);
 });
+
+export default router;

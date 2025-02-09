@@ -12,4 +12,22 @@ router.post('/uploadsong', async (req, res) => {
     res.status(201).send(newSong);
 });
 
-router.get('/downloadsong/:songId')
+router.get('/downloadsong/:songId', async (req, res) => {
+    try {
+        console.log(req.params);
+        let song = await db.downloadSong(req.params.songId);
+
+        if (song.length === 0) {
+            return res.status(404).send({error: "File not found"});
+        }
+
+        res.download(song[0].songPath, (err) => {
+            if (err) {
+                res.status(500).send({error: "File download failed"});
+            }
+        });
+    } catch (error) {
+        console.error("Error downloading file:", error);
+        res.status(500).send({error: "Internal Server Error"});
+    }
+});
