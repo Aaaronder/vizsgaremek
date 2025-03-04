@@ -1,33 +1,39 @@
 import express from 'express';
-import * as db from '../src/config/db.js';
+import pool from '../db/pool.mjs';
 
 const router = express.Router();
 
-export const routes = express.Router();
-
-router.post('/uploadsong', async (req, res) => {
-    console.log(req.body);
-    let newSong = await db.uploadSong(req.body);
-    res.header('Content-Type', 'application/json');
-    res.status(201).send(newSong);
+router.get('/', async (req, res) => {
+    const [rows] = await pool.query('SELECT * FROM songs');
+    res.json(rows);
 });
 
-router.get('/downloadsong/:songId', async (req, res) => {
-    try {
-        console.log(req.params);
-        let song = await db.downloadSong(req.params.songId);
-
-        if (song.length === 0) {
-            return res.status(404).send({error: "File not found"});
-        }
-
-        res.download(song[0].songPath, (err) => {
-            if (err) {
-                res.status(500).send({error: "File download failed"});
-            }
-        });
-    } catch (error) {
-        console.error("Error downloading file:", error);
-        res.status(500).send({error: "Internal Server Error"});
-    }
+router.get('/:id', async (req, res) => {
+    const [rows] = await pool.query('SELECT * FROM songs WHERE songId = ?', [req.params.id]);
+    res.json(rows[0]);
 });
+
+router.post('/', async (req, res) => {
+    const { songName, artistId, albumId, genreId, songUploaderId, instrumentId, songPath, songImage } = req.body;
+    const [result] = await pool.query(
+        'INSERT INTO songs (songName, artistId, albumId, genreId, songUploaderId, instrumentId, songPath, songImage) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [songName, artistId, albumId, genreId, songUploaderId, instrumentId, songPath, songImage]
+    );
+    res.json({ songId: result.insertId, songName });
+});
+
+router.put('/:id', async (req, res) => {
+    const { songName, artistId, albumId, genreId, songUploaderId, instrumentId, songPath, songImage } = req.body;
+    await pool.query(
+        'UPDATE songs SET songName = ?, artistId = ?, albumId = ?, genreId = ?, songUploaderId = ?, instrumentId = ?, songPath = ?, songImage = ? WHERE songId = ?',
+        [songName, artistId, albumId, genreId, songUploaderId, instrumentId, songPath, songImage, req.params.id]
+    );
+    res.json({ songId: req.params.id, songName });
+});
+
+router.delete('/:id', async (req, res) => {
+    await pool.query('DELETE FROM songs WHERE songId = ?', [req.params.id]);
+    res.json({ message: 'Dal törölve' });
+});
+
+export default router;
