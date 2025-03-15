@@ -1,17 +1,10 @@
-# Songs alkalmazás backendje
-## Könyvtár szerkezet
-```bash
-/songs-api
-│── /routes
-│   ├── artists.js
-│   ├── albums.js
-│   ├── genres.js
-│   ├── instruments.js
-│   ├── playlists.js
-│   ├── songs.js
-│   ├── users.js
-│── /db
-│   ├── pool.js
-│── server.js
-│── package.json
-```
+# Music App
+
+Ez a projekt egy Spotify-hoz hasonló zenei alkalmazás backendjét, frontendjét és adatbázisát tartalmazza. Az alkalmazás lehetővé teszi a felhasználók számára zenék feltöltését, albumok, műfajok, hangszerek és művészek kezelését, valamint lejátszási listák létrehozását és kezelését.
+
+## Funkciók
+
+- Zenei fájlok feltöltése.
+- Albumok, művészek, műfajok, és hangszerek kezelése.
+- Lejátszási listák kezelése.
+- Felhasználók regisztrálása és kezelése.
