@@ -8,3 +8,17 @@ Ez a projekt egy Spotify-hoz hasonló zenei alkalmazás backendjét, frontendjé
 - Albumok, művészek, műfajok, és hangszerek kezelése.
 - Lejátszási listák kezelése.
 - Felhasználók regisztrálása és kezelése.
+
+## Megoldandó feladatok
+
+- Felhasználók azonosítása és hitelesítése
+- Felhasználói profilok kezelése
+- Zenei adatbázis kezelése
+- Lejátszási listák létrehozása és kezelése
+- Zene feltöltés és letöltés kezelése
+- Zenei fájlok és metaadatok kezelése
+- Felhasználói élmény és felület kialakítása
+- Adatbiztonság és adatvédelem
+- Teljesítményoptimalizálás
+- Rendszerintegráció és API kezelése
+- Karbantartás és hibakezelés
