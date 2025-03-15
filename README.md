@@ -1,4 +1,4 @@
-# Viszkaregem - Outclass
+# Viszgaremek - Outclass
 
 Ez a projekt egy Spotify-hoz hasonló zenei alkalmazás backendjét, frontendjét és adatbázisát tartalmazza. Az alkalmazás lehetővé teszi a felhasználók számára zenék feltöltését, albumok, műfajok, hangszerek és művészek kezelését, valamint lejátszási listák létrehozását és kezelését.
 
