@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Összes dal lekérése
 router.get('/', async (req, res) => {
-    const [rows] = await pool.query('SELECT * FROM outclass');
+    const [rows] = await pool.query('SELECT * FROM songs');
     res.json(rows);
 });
 
