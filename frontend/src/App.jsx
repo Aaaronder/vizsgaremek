@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SongsList from "./songsList.jsx"
+import SongsList from "./components/songsList.jsx"
 
 function App() {
   const [message, setMessage] = useState("");
@@ -12,7 +12,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <h1>Üdv az Outclass frontendjén!</h1>
       <SongsList />
     </div>
