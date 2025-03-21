@@ -1,6 +1,8 @@
+// Modúlok importálása
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
+// A .env fájlban található változókat betöltése a process.env objektumba
 dotenv.config();
 
 // Pool létrehozása
@@ -14,6 +16,7 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
+// Függvény a kapcsolat teszterlésére
 const testConnection = async () => {
   try {
     const connection = await pool.getConnection();
@@ -24,7 +27,8 @@ const testConnection = async () => {
   }
 };
 
-// Teszteljük a kapcsolatot a szerver indítása előtt
+// Tesztelő függvény meghívása
 testConnection();
 
+// Pool objektum exportálása
 export default pool;
