@@ -1,6 +1,8 @@
+// Modúlok importálása
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+
+// Végpontok importálása
 import albumRoutes from "./routes/albums.js";
 import artistRoutes from "./routes/artists.js";
 import genreRoutes from './routes/genres.js';
@@ -8,18 +10,18 @@ import instrumentRoutes from './routes/instruments.js';
 import playlistRoutes from './routes/playlists.js';
 import songRoutes from './routes/songs.js';
 import userRoutes from './routes/users.js';
+
 import pool from './config/db.js';
 
-dotenv.config();
-
+// Express alkalmazás létrehozása
 const app = express();
 
-// Middleware-ek
+// Middleware-ek a kérésekhez
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Útvonalak
+// API útvonalak
 app.use('/artists', artistRoutes);
 app.use('/albums', albumRoutes);
 app.use('/genres', genreRoutes);
