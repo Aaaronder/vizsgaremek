@@ -1,6 +1,8 @@
+// Modúlok importálása
 import express from 'express';
 import pool from '../config/db.js';
 
+// Express router az útvonalak kezelésére
 const router = express.Router();
 
 // Összes lejátszási lista lekérése
@@ -35,4 +37,5 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: 'Lejátszási lista törölve' });
 });
 
+// Router exportálása
 export default router;

@@ -1,9 +1,11 @@
+// Modúlok importálása
 import express from 'express';
 import pool from '../config/db.js';
 
+// Express router az útvonalak kezelésére
 const router = express.Router();
 
-// osszes eloado lekerese
+// Összes előadó lekérése
 router.get('/', async (req, res) => {
     try {
         const [rows] = await pool.query('SELECT * FROM artists');
@@ -13,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Egy adott eloado lekerese
+// Egy adott előadó lekérése
 router.get('/:id', async (req, res) => {
     try {
         const [rows] = await pool.query('SELECT * FROM artists WHERE artistId = ?', [req.params.id]);
@@ -24,7 +26,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// uj eloado hozzaadasa
+// Új előadó hozzáadása
 router.post('/', async (req, res) => {
     try {
         const { artistName } = req.body;
@@ -35,7 +37,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Eloado modositasa
+// Előadó módosítása
 router.put('/:id', async (req, res) => {
     try {
         const { artistName } = req.body;
@@ -47,7 +49,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Eloado torlese
+// Előadó törlése
 router.delete('/:id', async (req, res) => {
     try {
         const [result] = await pool.query('DELETE FROM artists WHERE artistId = ?', [req.params.id]);
@@ -58,5 +60,5 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// Router exportálása
 export default router;
-// Az eloadok kezelesere szolgalo vegpontokat tartalmazo fajl

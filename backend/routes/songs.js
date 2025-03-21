@@ -1,21 +1,23 @@
+// Modúlok importálása
 import express from 'express';
 import pool from '../config/db.js';
 
+// Express router az útvonalak kezelésére
 const router = express.Router();
 
-// Összes dal lekérése
+// Összes zene lekérése
 router.get('/', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM songs');
     res.json(rows);
 });
 
-// Egy adott dal lekérése
+// Egy adott zene lekérése
 router.get('/:id', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM songs WHERE songId = ?', [req.params.id]);
     res.json(rows[0]);
 });
 
-// Új dal hozzáadása
+// Új zene hozzáadása
 router.post('/', async (req, res) => {
     const { songName, artistId, albumId, genreId, songUploaderId, instrumentId, songPath, songImage } = req.body;
     const [result] = await pool.query(
@@ -25,7 +27,7 @@ router.post('/', async (req, res) => {
     res.json({ songId: result.insertId, songName });
 });
 
-// Dal módosítása
+// Zene módosítása
 router.put('/:id', async (req, res) => {
     const { songName, artistId, albumId, genreId, songUploaderId, instrumentId, songPath, songImage } = req.body;
     await pool.query(
@@ -35,13 +37,13 @@ router.put('/:id', async (req, res) => {
     res.json({ songId: req.params.id, songName });
 });
 
-// Dal törlése
+// Zene törlése
 router.delete('/:id', async (req, res) => {
     await pool.query('DELETE FROM songs WHERE songId = ?', [req.params.id]);
     res.json({ message: 'Dal törölve' });
 });
 
-// Zene keresése
+// Zene keresése ??
 router.get('/search', (req, res) => {
   const { artistName, genreName, albumName } = req.query;
 
@@ -71,5 +73,6 @@ router.get('/search', (req, res) => {
     res.status(200).json({ songs: result });
   });
 });
-  
+
+// Router exportálása
 export default router;
