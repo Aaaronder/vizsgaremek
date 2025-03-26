@@ -1,90 +1,93 @@
-import { useEffect, useState } from "react";
-import InstrumentFilter from "./instrumentFilter.jsx";
-import GenreFilter from "./genreFilter.jsx";
-import ArtistFilter from "./artistFilter.jsx";
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-function SongsList() {
-    const [songs, setSongs] = useState([]);  // Az adatokat tárolja
-    const [search, setSearch] = useState(""); // A keresési mező állapota
-    const [selectedInstrument, setSelectedInstrument] = useState("");
-    const [filteredSongs, setFilteredSongs] = useState([]);
-    const [selectedGenre, setSelectedGenre] = useState("");
-    const [selectedArtist, setSelectedArtist] = useState("");
-    
+export default function SongList() {
+  const [songs, setSongs] = useState([]);
+  const [albums, setAlbums] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [instruments, setInstruments] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    // Adatok lekérése az API-ból
-    useEffect(() => {
-        fetch(`http://localhost:3000/songs?search=${search}`)
-            .then((response) => response.json())
-            .then((data) => setSongs(data))
-            .catch((error) => console.error("Hiba:", error));
-    }, [search]); // Ha változik a keresési érték, újra fut
+  // Zenék betöltése a backendről
+useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [songsRes, albumsRes, artistsRes, genresRes, instrumentsRes, usersRes] = await Promise.all([
+          axios.get('http://localhost:3000/songs'),
+          axios.get('http://localhost:3000/albums'),
+          axios.get('http://localhost:3000/artists'),
+          axios.get('http://localhost:3000/genres'),
+          axios.get('http://localhost:3000/instruments'),
+          axios.get('http://localhost:3000/users'),
+        ]);
 
-    // Szűrés a hangszer alapján
-    const filterSongsByInstrument = (instrumentId) => {
-        setSelectedInstrument(instrumentId);
-
-        if (instrumentId) {
-            // Ha van választott hangszer, szűrjük a zenéket az instrumentId alapján
-            const filtered = songs.filter((song) => song.instrumentId === parseInt(instrumentId));
-            setFilteredSongs(filtered);
-        } else {
-            // Ha nincs választott hangszer, minden dalt visszaadunk
-            setFilteredSongs(songs);
-        }
+        setSongs(songsRes.data);
+        setAlbums(albumsRes.data);
+        setArtists(artistsRes.data);
+        setGenres(genresRes.data);
+        setInstruments(instrumentsRes.data);
+        setUsers(usersRes.data);
+      } catch (error) {
+        console.error("Hiba az adatok betöltésében:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    // Szűrés a hangszer alapján
-    const filterSongsByGenre = (genreId) => {
-        setSelectedGenre(genreId);
+    fetchData();
+  }, []);
+  
 
-        if (genreId) {
-            // Ha van választott hangszer, szűrjük a zenéket az instrumentId alapján
-            const filtered = songs.filter((song) => song.genreId === parseInt(genreId));
-            setFilteredSongs(filtered);
-        } else {
-            // Ha nincs választott hangszer, minden dalt visszaadunk
-            setFilteredSongs(songs);
-        }
-    };
+  // Segédfüggvények
+  const getAlbumName = (albumId) => 
+    albums.find(album => album.albumId === albumId)?.albumName || 'Nincs album';
 
-    return (
-        <div>
+  const getArtistName = (artistId) => 
+    artists.find(artist => artist.artistId === artistId)?.artistName || 'Ismeretlen előadó';
 
-            <InstrumentFilter onInstrumentChange={filterSongsByInstrument} />
-            <GenreFilter onGenreChange={filterSongsByGenre} />
+  const getGenreName = (genreId) => 
+    genres.find(genre => genre.genreId === genreId)?.genreName || 'Ismeretlen műfaj';
 
-            <h2>Dalok listája</h2>
-            <input
-                type="text"
-                placeholder="Keresés cím alapján..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)} // Az input változása esetén frissítjük a state-et
-            />
-            <ul>
-                {songs.length > 0 ? (
-                    songs.map((song) => (
-                        <li key={song.songId}>{song.songName} - {song.artistId}</li>
-                    ))
-                ) : (
-                    <p>Nincs találat a keresésre.</p>
-                )}
-            </ul>
+  const getInstrumentName = (instrumentId) => 
+    instruments.find(instrument => instrument.instrumentId === instrumentId)?.instrumentName || 'Nincs hangszer';
 
-            <h4>Hangszerek szűrt lista</h4>
-            <ul>
-                {filteredSongs.length > 0 ? (
-                    filteredSongs.map((song) => (
-                        <li key={song.songId}>
-                            <strong>{song.songName}</strong> - {song.artistId}
-                        </li>
-                    ))
-                ) : (
-                    <p>Nincs elérhető zenek a kiválasztott hangszerhez.</p>
-                )}
-            </ul>
-        </div>
-    );
+  const getUploaderName = (songUploaderId) => 
+    users.find(user => user.userId === songUploaderId)?.userName || 'Ismeretlen felhasználó';
+
+  if (loading) return <div className="loading">Betöltés...</div>;
+
+  return (
+    <div className="song-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Cím</th>
+            <th>Előadó</th>
+            <th>Album</th>
+            <th>Műfaj</th>
+            <th>Hangszer</th>
+            <th>Feltöltő</th>
+            <th>Elérési út</th>
+            <th>Cover</th>
+          </tr>
+        </thead>
+        <tbody>
+          {songs.map((song) => (
+            <tr key={song.songId}>
+              <td>{song.songName}</td>
+              <td>{getArtistName(song.artistId)}</td>
+              <td>{getAlbumName(song.albumId)}</td>
+              <td>{getGenreName(song.genreId)}</td>
+              <td>{getInstrumentName(song.instrumentId)}</td>
+              <td>{getUploaderName(song.songUploaderId)}</td>
+              <td>{song.songPath}</td>
+              <td>{song.songImage || "placeholder.jpg"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
 }
-
-export default SongsList;

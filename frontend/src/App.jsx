@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
-import SongsList from "./components/songsList.jsx"
+import { useState } from 'react'
+import './App.css'
+import SongList from './components/songsList.jsx'
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:3000/songs")
-      .then((response) => response.json())
-      .then((data) => setMessage(data.message))
-      .catch((error) => console.error("Hiba:", error));
-  }, []);
 
   return (
-    <div className="App">
-      <h1>Üdv az Outclass frontendjén!</h1>
-      <SongsList />
-    </div>
-  );
+    <>
+    <h1>Outclass</h1>
+    <SongList />
+    </>
+  )
 }
 
-export default App;
+export default App
