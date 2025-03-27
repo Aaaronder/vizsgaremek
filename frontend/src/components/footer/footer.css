@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+footer{
+    width: 100%;
+    margin-top: 50px;
+    height: 200px;
+    background-color: white;
+    border-radius: 45px 45px 0 0;
+    font-family: outfit;
+}
+
+.spaceous{
+    width: 75%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left, .center, .right{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: black;
+    text-align: center;
+}
+
+.center, .right{
+    flex-direction: column;
+}
+
+.shidd{
+    color: black;
+    font-size: 16px;
+}
+
+.shidd:hover{
+    color: black;
+}

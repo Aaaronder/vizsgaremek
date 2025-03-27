@@ -14,12 +14,11 @@ export default function SongList() {
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const [songsRes, albumsRes, artistsRes, genresRes, instrumentsRes, usersRes] = await Promise.all([
+        const [songsRes, albumsRes, artistsRes, genresRes, usersRes] = await Promise.all([
           axios.get('http://localhost:3000/songs'),
           axios.get('http://localhost:3000/albums'),
           axios.get('http://localhost:3000/artists'),
           axios.get('http://localhost:3000/genres'),
-          axios.get('http://localhost:3000/instruments'),
           axios.get('http://localhost:3000/users'),
         ]);
 
@@ -27,7 +26,6 @@ useEffect(() => {
         setAlbums(albumsRes.data);
         setArtists(artistsRes.data);
         setGenres(genresRes.data);
-        setInstruments(instrumentsRes.data);
         setUsers(usersRes.data);
       } catch (error) {
         console.error("Hiba az adatok betöltésében:", error);
@@ -42,21 +40,18 @@ useEffect(() => {
 
   // Segédfüggvények
   const getAlbumName = (albumId) => 
-    albums.find(album => album.albumId === albumId)?.albumName || 'Nincs album';
+    albums.find(album => album.albumId === albumId)?.albumName || 'Unknown album';
 
   const getArtistName = (artistId) => 
-    artists.find(artist => artist.artistId === artistId)?.artistName || 'Ismeretlen előadó';
+    artists.find(artist => artist.artistId === artistId)?.artistName || 'Unknown artist';
 
   const getGenreName = (genreId) => 
-    genres.find(genre => genre.genreId === genreId)?.genreName || 'Ismeretlen műfaj';
-
-  const getInstrumentName = (instrumentId) => 
-    instruments.find(instrument => instrument.instrumentId === instrumentId)?.instrumentName || 'Nincs hangszer';
+    genres.find(genre => genre.genreId === genreId)?.genreName || 'Unknown genre';
 
   const getUploaderName = (songUploaderId) => 
-    users.find(user => user.userId === songUploaderId)?.userName || 'Ismeretlen felhasználó';
+    users.find(user => user.userId === songUploaderId)?.userName || 'Unknown user';
 
-  if (loading) return <div className="loading">Betöltés...</div>;
+  if (loading) return <div className="loading">Loading...</div>;
 
   return (
     <div className="song-table">
@@ -67,7 +62,6 @@ useEffect(() => {
             <th>Előadó</th>
             <th>Album</th>
             <th>Műfaj</th>
-            <th>Hangszer</th>
             <th>Feltöltő</th>
             <th>Elérési út</th>
             <th>Cover</th>
@@ -80,7 +74,6 @@ useEffect(() => {
               <td>{getArtistName(song.artistId)}</td>
               <td>{getAlbumName(song.albumId)}</td>
               <td>{getGenreName(song.genreId)}</td>
-              <td>{getInstrumentName(song.instrumentId)}</td>
               <td>{getUploaderName(song.songUploaderId)}</td>
               <td>{song.songPath}</td>
               <td>{song.songImage || "placeholder.jpg"}</td>
