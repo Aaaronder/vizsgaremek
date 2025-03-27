@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `probafel`
 --
-CREATE DATABASE IF NOT EXISTS `probafel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `probafel`;
+CREATE DATABASE IF NOT EXISTS `outclass` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `outclass`;
 
 -- --------------------------------------------------------
 
