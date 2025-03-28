@@ -3,7 +3,7 @@
   width: 100%;
 }
 
-.song-table {
+/*.song-table {
   margin: 20px;
   overflow-x: auto;
   text-align: center;
@@ -27,4 +27,4 @@ th {
 
 tr:hover {
   background-color: #676186;
-}
+}*/
