@@ -4,14 +4,17 @@ import './navigationBar.css';
 
 const Navbar = () => {
   return (
-    <header>
-        <div className="navigationBar">
-            <img className='logo' src="/public/Logo.png" alt="" />
-            <a href="#">Browse</a>
-            <a href="#">Upload</a>
-            <img className='account' src="/public/Account.png" alt="" />
-        </div>
-    </header>
+    <div className="navigationBar">
+      <div className="browseButton">
+      <a href="#"><img src="./src/assets/images/Logo.png" alt="" className="browseImage" /></a>
+      </div>
+      <div className="plusButton">
+      <a href="#"><img className='plusImage' src="./src/assets/images/Plus.png" alt="" /></a>
+      </div>
+      <div className="accountButton">
+        <a href="#"><img src="./src/assets/images/Account.png" alt="" className="accountImage" /></a>
+      </div>
+    </div>
   );
 };
 
