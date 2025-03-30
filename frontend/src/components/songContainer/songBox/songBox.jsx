@@ -6,7 +6,7 @@ const songBox = () => {
     return (
         <div className="box">
             <div className="left">
-            <img src="../src/assets/images/placeholder.png" alt="" />
+            <img className='bgImage' src="../src/assets/images/placeholder.png" alt="" />
             </div>
             <div className="right">
                 <h3>Sunshine Baby</h3>

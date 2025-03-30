@@ -22,6 +22,7 @@
         top: -25%;
         transform: translate(-50%, 0%);
         z-index: 1;
+        cursor: pointer;
     }
 
     .plusImage{
@@ -63,28 +64,35 @@
 
 @media (min-width: 640px){
     .navigationBar{
-        width: 85%;
-        height: 65px;
+        z-index: 100;
+        width: 100%;
+        height: 60px;
         background-color: #4C4863;
-        border-radius: 50px;
         position: fixed;
-        left: 50%;
-        top: 25px;
-        transform: translateX(-50%);
         display: flex;
-        z-index: 2;
+        top: 0;
+        border-radius: 0 0 22.5px 22.5px ;
     }
 
     .plusButton{
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         background-color: #676186;
         border-radius: 100%;
         position: absolute;
         left: 50%;
-        top: -8px;
-        transform: translateX(-50%);
-        z-index: 3;
+        top: 25%;
+        transform: translate(-50%, 0%);
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .plusImage{
+        width: 25px;
+        height: 25px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .browseButton{
@@ -93,17 +101,9 @@
         border-right: 1px solid #676186;
     }
 
-    .plusImage{
-        width: 60px;
-        height: 60px;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
     .browseImage{
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         position: relative;
         top: 50%;
         transform: translateY(-50%);
@@ -116,8 +116,8 @@
     }
 
     .accountImage{
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         position: relative;
         top: 50%;
         transform: translateY(-50%);
