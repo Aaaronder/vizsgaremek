@@ -81,7 +81,7 @@
         border-radius: 22.5px;
         object-fit: cover;
         filter: blur(4px) saturate(0.75) brightness(0.75);
-        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.25), rgba(0, 0, 0, 1));
+        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.25), rgba(0,0,0, 1));
     }
     
     .right{
