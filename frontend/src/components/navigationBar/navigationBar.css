@@ -142,7 +142,7 @@
     }
 }
 
-@media (min-width: 1023px) {
+@media (min-width: 1024px) {
     #root{
         text-align: unset;
     }   
@@ -159,6 +159,10 @@
         transform: translateX(-50%);
         border-radius: 50px;
         border: 3px solid #2D2A3B;
+    }
+
+    .browseButton, .accountButton {
+        overflow: hidden; /* Megakadályozza a tartalom túlnyúlását */
     }
 
     .plusButton {
