@@ -20,18 +20,3 @@
         row-gap: 20px;
     }
 }
-
-@media (min-width: 1024px){
-    .container {
-        width: 80%;
-        margin: 100px auto;
-        height: 90%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Pontosan 3 oszlop */
-        background-color: #676186;
-        padding: 25px;
-        gap: 1rem; /* row-gap és column-gap helyett */
-        justify-content: center;
-        border-radius: 45px;
-    }
-}
