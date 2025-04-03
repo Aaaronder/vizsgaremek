@@ -368,7 +368,10 @@ h3, p{
     .card{
         width: min(100%, 350px);
         height: 275px;
-        background-color: #8B82B5;
+        background-image: url(../../../assets//images/kingvon.jfif);
+        background-repeat: no-repeat;
+        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0,0,0,1));
+        background-size: cover;
         margin: auto;
         border-radius: 22.5px;
         display: flex;
@@ -385,28 +388,31 @@ h3, p{
         padding-left: 10px;
         text-align: start;
         position: relative;
+        backdrop-filter: blur(2px) saturate(0.75) brightness(0.75);
+        border-radius: 22.5px;
     }
 
     .songName{
         font-size: 1.5rem;
         font-weight: 700;
         position: absolute;
-        bottom: 15%;
-        transform: translateY(-15%);
+        bottom: 13%;
+        transform: translateY(-13%);
     }
 
     .artistAlbum{
         font-size: 1.2rem;
         font-weight: 400;
         position: absolute;
-        bottom: 10%;
+        bottom: 7%;
+        transform: translateY(-7%);
     }
 
     .uploader{
         font-size: 0.9rem;
         font-weight: 100;
         position: absolute;
-        bottom: 5%;
-        transform: translateY(-5%);
+        bottom: 2%;
+        transform: translateY(-2%);
     }
 }

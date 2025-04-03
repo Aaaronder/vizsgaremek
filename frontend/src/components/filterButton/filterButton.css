@@ -43,3 +43,9 @@
         margin-top: 5px;
     }
 }
+
+@media (min-width: 1024px){
+    .filterButton{
+        display: none;
+    }
+}

@@ -26,11 +26,6 @@ const songContainer = () => {
             <SongBox></SongBox>
             <SongBox></SongBox>
             <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
         </div>
     );
 };
