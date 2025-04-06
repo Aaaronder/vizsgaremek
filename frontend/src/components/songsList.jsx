@@ -6,9 +6,7 @@ export default function SongList() {
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [instruments, setInstruments] = useState([]);
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   // Zenék betöltése a backendről
 useEffect(() => {
@@ -29,8 +27,6 @@ useEffect(() => {
         setUsers(usersRes.data);
       } catch (error) {
         console.error("Hiba az adatok betöltésében:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -50,8 +46,6 @@ useEffect(() => {
 
   const getUploaderName = (songUploaderId) => 
     users.find(user => user.userId === songUploaderId)?.userName || 'Unknown user';
-
-  if (loading) return <div className="loading">Loading...</div>;
 
   return (
     <div className="song-table">

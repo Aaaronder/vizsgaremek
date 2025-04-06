@@ -29,7 +29,12 @@
     }
 
     svg{
-        padding-left: 1rem;
-        padding-right: 1rem;
+        width: 3rem;
+        text-align: end;
+    }
+
+    .ppp{
+        width: fit-content;
+        text-align: start;
     }
 }

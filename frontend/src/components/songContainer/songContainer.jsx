@@ -3,31 +3,20 @@ import { Link } from 'react-router-dom';
 import SongBox from './songBox/songBox.jsx'
 import './songContainer.css';
 
-const songContainer = () => {
-    return (
-        <div className="container">
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
-            <SongBox></SongBox>
+/*
+<div className="container">
             <SongBox></SongBox>
         </div>
-    );
-};
+*/
 
-export default songContainer;
+function SongContainer({ songs }) {
+    return (
+        <div className="container">
+            {songs.map((song) => (
+                <SongBox key={song.id} song={song} />
+            ))}
+        </div>
+    );
+}
+
+export default SongContainer;
