@@ -1,39 +1,50 @@
-.card{
-    padding-bottom: 0%;
+.card {
+    background-color: #8B82B5;
+    margin: auto;
+    border-radius: 22.5px;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0, 0, 0, 1));
+    background-size: cover;
 }
 
-h3, p{
+.card:hover {
+    cursor: pointer;
+}
+
+.rest {
+    width: 100%;
+    height: 100%;
+    text-align: start;
+    backdrop-filter: blur(2px) saturate(0.75) brightness(0.75);
+}
+
+h3, p {
     margin: 0;
     padding: 0;
     color: #dfdfdf;
 }
 
-@media (max-width: 639px){
-    .card{
+@media (max-width: 639px) {
+    .card {
         width: 95%;
         height: 20vw;
-        background-color: #8B82B5;
-        margin: 0 auto;
-        border-radius: 22.5px;
-        overflow: hidden;
-        display: flex;
     }
 
-    .mobileImage{
+    .mobileImage {
         height: 100%;
         width: 25%;
         background-color: red;
     }
 
-    .nigga{
+    .theImage {
         width: 100%;
         height: 100%;
     }
 
-    .rest{
-        width: 100%;
-        height: 100%;
-        text-align: start;
+    .rest {
         padding: 0;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -44,17 +55,17 @@ h3, p{
         position: relative;
     }
 
-    .songName{
+    .songName {
         font-size: 1.4rem;
         font-weight: 700;
     }
 
-    .artistAlbum{
+    .artistAlbum {
         font-size: 1.1rem;
         font-weight: 400;
     }
 
-    .uploader{
+    .uploader {
         font-size: 0.9rem;
         font-weight: 100;
         position: absolute;
@@ -63,115 +74,93 @@ h3, p{
     }
 }
 
-@media (min-width: 640px){
-    .card{
+@media (min-width: 640px) {
+    .card {
         width: 45%;
         height: 350px;
-        background-color: #8B82B5;
-        margin: auto;
-        border-radius: 22.5px;
-        display: flex;
-        position: relative;
+        background-image: url(../../../assets//images/kingvon.jfif);
     }
 
-    .mobileImage{
+    .mobileImage {
         display: none;
     }
 
-    .rest{
-        width: 100%;
-        height: 100%;
+    .rest {
         padding-left: 10px;
-        text-align: start;
         position: relative;
     }
 
-    .songName{
+    .songName {
         font-size: 1.5rem;
         font-weight: 700;
 
     }
 
-    .artistAlbum{
+    .artistAlbum {
         font-size: 1.2rem;
         font-weight: 400;
 
     }
 
-    .uploader{
+    .uploader {
         font-size: 0.9rem;
         font-weight: 100;
 
     }
 }
 
-@media (min-width: 1024px){
-    .card{
+@media (min-width: 1024px) {
+    .card {
         width: min(100%, 350px);
-        background-color: #8B82B5;
-        margin: auto;
-        border-radius: 22.5px;
-        display: flex;
-        position: relative;
+        background-image: url(../../../assets//images/kingvon.jfif);
     }
 
-    .mobileImage{
+    .mobileImage {
         display: none;
     }
 
-    .rest{
-        width: 100%;
-        height: 100%;
+    .rest {
         padding-left: 10px;
-        text-align: start;
         position: relative;
     }
 
-    .songName{
+    .songName {
         font-size: 1.5rem;
         font-weight: 700;
 
     }
 
-    .artistAlbum{
+    .artistAlbum {
         font-size: 1.2rem;
         font-weight: 400;
 
     }
 
-    .uploader{
+    .uploader {
         font-size: 0.9rem;
         font-weight: 100;
 
     }
 }
 
-@media (min-width: 1400px){
-    .card{
+@media (min-width: 1400px) {
+    .card {
         width: min(100%, 350px);
         height: 275px;
         background-image: url(../../../assets//images/kingvon.jfif);
         background-repeat: no-repeat;
-        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0,0,0,1));
+        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0, 0, 0, 1));
         background-size: cover;
-        margin: auto;
-        border-radius: 22.5px;
-        display: flex;
-        position: relative;
     }
 
-    .mobileImage{
+    .mobileImage {
         display: none;
     }
 
-    .rest{
-        width: 100%;
-        height: 100%;
-        text-align: start;
+    .rest {
         padding: 0;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
-        backdrop-filter: blur(2px) saturate(0.75) brightness(0.75);
         border-radius: 22.5px;
         display: flex;
         flex-direction: column;
@@ -180,18 +169,18 @@ h3, p{
         position: relative;
     }
 
-    .songName{
+    .songName {
         font-size: 1.4rem;
         font-weight: 700;
     }
 
-    .artistAlbum{
+    .artistAlbum {
         font-size: 1.1rem;
         font-weight: 400;
         text-align: center;
     }
 
-    .uploader{
+    .uploader {
         font-size: 0.9rem;
         font-weight: 100;
         position: absolute;
