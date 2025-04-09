@@ -1,6 +1,8 @@
 // components/SongPopup.jsx
 import React from 'react';
 import { useState, useEffect } from 'react'
+import './SongPopup.css'
+import axios from 'axios';  // <- Add hozzá az importot
 
 const SongPopup = ({ song, onClose }) => {
 
@@ -9,6 +11,31 @@ const SongPopup = ({ song, onClose }) => {
     const [artists, setArtists] = useState([]);
     const [genres, setGenres] = useState([]);
     const [users, setUsers] = useState([]);
+
+    // Zenék betöltése a backendről
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [songsRes, albumsRes, artistsRes, genresRes, usersRes] = await Promise.all([
+                    axios.get('http://localhost:3000/songs'),
+                    axios.get('http://localhost:3000/albums'),
+                    axios.get('http://localhost:3000/artists'),
+                    axios.get('http://localhost:3000/genres'),
+                    axios.get('http://localhost:3000/users'),
+                ]);
+
+                setSongs(songsRes.data);
+                setAlbums(albumsRes.data);
+                setArtists(artistsRes.data);
+                setGenres(genresRes.data);
+                setUsers(usersRes.data);
+            } catch (error) {
+                console.error("Hiba az adatok betöltésében:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     // Segédfüggvények
     const getAlbumName = (albumId) =>
@@ -24,46 +51,13 @@ const SongPopup = ({ song, onClose }) => {
         users.find(user => user.userId === songUploaderId)?.userName || 'Unknown user';
 
     return (
-        <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.8)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1000
-        }} onClick={onClose}>
-            <div style={{
-                background: 'white',
-                padding: '2rem',
-                borderRadius: '10px',
-                maxWidth: '600px',
-                width: '90%',
-                position: 'relative'
-            }} onClick={e => e.stopPropagation()}>
-                <button
-                    onClick={onClose}
-                    style={{
-                        position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        background: 'none',
-                        border: 'none',
-                        fontSize: '1.5rem',
-                        cursor: 'pointer'
-                    }}
-                >
-                    ×
-                </button>
-
-                <h2 style={{color: 'black'}}>{song.songName}</h2>
-                <p><strong>Előadó:</strong> {getArtistName(song.artistId)}</p>
-                <p><strong>Album:</strong> {getAlbumName(song.albumId)}</p>
-                <p><strong>Genre:</strong> {getGenreName(song.genreNameId)}</p>
-                <p><strong>Év:</strong> {getUploaderName(song.songUploaderId)}</p>
+        <div className='bigPic' onClick={onClose}>
+            <div className='pop' onClick={e => e.stopPropagation()}>
+                <h2 className='theSongName'>{song.songName}</h2>
+                <p style={{color: 'black'}}><strong>Előadó:</strong> {getArtistName(song.artistId)}</p>
+                <p style={{color: 'black'}}><strong>Album:</strong> {getAlbumName(song.albumId)}</p>
+                <p style={{color: 'black'}}><strong>Genre:</strong> {getGenreName(song.genreNameId)}</p>
+                <p style={{color: 'black'}}><strong>Év:</strong> {getUploaderName(song.songUploaderId)}</p>
             </div>
         </div>
     );
