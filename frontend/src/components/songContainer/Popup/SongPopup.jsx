@@ -2,7 +2,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import './SongPopup.css'
-import axios from 'axios';  // <- Add hozzá az importot
+import axios from 'axios';
+import images1 from '../../../assets/images/placeholder.png'
+import tile from '../../../assets/images/Logo.png'
 
 const SongPopup = ({ song, onClose }) => {
 
@@ -53,12 +55,25 @@ const SongPopup = ({ song, onClose }) => {
     return (
         <div className='bigPic' onClick={onClose}>
             <div className='pop' onClick={e => e.stopPropagation()}>
-                <h2 className='theSongName'>{song.songName}</h2>
-                <p style={{color: 'black'}}><strong>Előadó:</strong> {getArtistName(song.artistId)}</p>
-                <p style={{color: 'black'}}><strong>Album:</strong> {getAlbumName(song.albumId)}</p>
-                <p style={{color: 'black'}}><strong>Genre:</strong> {getGenreName(song.genreNameId)}</p>
-                <p style={{color: 'black'}}><strong>Év:</strong> {getUploaderName(song.songUploaderId)}</p>
+                <div className="leftP">
+                    <img className='thimage' src={images1} alt="" />
+                </div>
+                <div className="centerP">
+                    <h2 className='theSongName'>{song.songName}</h2>
+                    <p className='popupP'><strong>Artist:</strong> {getArtistName(song.artistId)}</p>
+                    <p className='popupP'><strong>Album:</strong> {getAlbumName(song.albumId)}</p>
+                    <p className='popupP'><strong>Genre:</strong> {getGenreName(song.genreId)}</p>
+                    <p className='popupP'><strong>Uploader:</strong> {getUploaderName(song.songUploaderId)}</p>
+                    <audio controls className='thing'>
+                        <source className='thing' src="horse.ogg" type="audio/ogg" />
+                    </audio>
+                </div>
+                <div className="rightP">
+                    <button className='downloadButton'>Download</button>
+                </div>
+                <img className='bgtile' src={tile} alt="" />
             </div>
+            <p className='closeP'>Tap anywhere outside to close the popup.</p>
         </div>
     );
 };
