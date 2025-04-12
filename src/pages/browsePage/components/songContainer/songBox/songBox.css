@@ -1,0 +1,187 @@
+.card {
+    background-color: #8B82B5;
+    margin: auto;
+    border-radius: 22.5px;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0, 0, 0, 1));
+    background-size: cover;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.rest {
+    width: 100%;
+    height: 100%;
+    text-align: start;
+    backdrop-filter: blur(2px) saturate(0.75) brightness(0.75);
+}
+
+h3, p {
+    margin: 0;
+    padding: 0;
+    color: #dfdfdf;
+}
+
+@media (max-width: 639px) {
+    .card {
+        width: 95%;
+        height: 20vw;
+    }
+
+    .mobileImage {
+        height: 100%;
+        width: 25%;
+        background-color: red;
+    }
+
+    .theImage {
+        width: 100%;
+        height: 100%;
+    }
+
+    .rest {
+        padding: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        position: relative;
+    }
+
+    .songName {
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .artistAlbum {
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    .uploader {
+        font-size: 0.9rem;
+        font-weight: 100;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .card {
+        width: 45%;
+        height: 350px;
+    }
+
+    .mobileImage {
+        display: none;
+    }
+
+    .rest {
+        padding-left: 10px;
+        position: relative;
+    }
+
+    .songName {
+        font-size: 1.5rem;
+        font-weight: 700;
+
+    }
+
+    .artistAlbum {
+        font-size: 1.2rem;
+        font-weight: 400;
+
+    }
+
+    .uploader {
+        font-size: 0.9rem;
+        font-weight: 100;
+
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        width: min(100%, 350px);
+    }
+
+    .mobileImage {
+        display: none;
+    }
+
+    .rest {
+        padding-left: 10px;
+        position: relative;
+    }
+
+    .songName {
+        font-size: 1.5rem;
+        font-weight: 700;
+
+    }
+
+    .artistAlbum {
+        font-size: 1.2rem;
+        font-weight: 400;
+
+    }
+
+    .uploader {
+        font-size: 0.9rem;
+        font-weight: 100;
+
+    }
+}
+
+@media (min-width: 1400px) {
+    .card {
+        width: min(100%, 350px);
+        height: 275px;
+        background-repeat: no-repeat;
+        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0, 0, 0, 1));
+        background-size: cover;
+    }
+
+    .mobileImage {
+        display: none;
+    }
+
+    .rest {
+        padding: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        border-radius: 22.5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .songName {
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .artistAlbum {
+        font-size: 1.1rem;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .uploader {
+        font-size: 0.9rem;
+        font-weight: 100;
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0.5rem;
+    }
+}

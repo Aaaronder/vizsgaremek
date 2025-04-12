@@ -1,36 +1,12 @@
-# Viszgaremek - Outclass
+# React + Vite
 
-Ez a projekt egy Spotify-hoz hasonló zenei alkalmazás backendjét, frontendjét és adatbázisát tartalmazza. Az alkalmazás lehetővé teszi a felhasználók számára zenék feltöltését, albumok, műfajok, hangszerek és művészek kezelését, valamint lejátszási listák létrehozását és kezelését.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Funkciók
-- Zenei fájlok feltöltése.
-- Albumok, művészek, műfajok és hangszerek kezelése.
-- Lejátszási listák kezelése.
-- Felhasználók regisztrálása és kezelése.
+Currently, two official plugins are available:
 
-## Nem funkcionális igények
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Felhasználóbarát, reszponzív felület.
-- Gyors és hatékony adatkezelés.
-- Adatbiztonság és titkosítás.
-- Rugalmas rendszer, amely képes kezelni a nagy mennyiségű zenei fájlt és felhasználót.
+## Expanding the ESLint configuration
 
-## Megoldandó feladatok
-- Felhasználók azonosítása és hitelesítése: Bejelentkezés, regisztráció és profilkezelés.
-- Felhasználói profilok kezelése: Személyes adatok és preferenciák kezelése.
-- Zenei adatbázis kezelése: Albumok, művészek, műfajok és hangszerek tárolása és kezelése.
-- Lejátszási listák létrehozása és kezelése: A felhasználók saját lejátszási listáik kezelésére.
-- Zene feltöltés és letöltés kezelése: MP3 fájlok és metaadatok feltöltése, letöltése és kezelése.
-- Zenei fájlok és metaadatok kezelése: Művész, album, műfaj és egyéb információk kezelés.
-- Felhasználói élmény és felület kialakítása: Intuitív, könnyen használható felület.
-- Adatbiztonság és adatvédelem: Titkosítás, biztonságos adatkezelés.
-- Teljesítményoptimalizálás: A rendszer sebessége és skálázhatósága.
-- Rendszerintegráció és API kezelése: A rendszer összekapcsolása más alkalmazásokkal.
-- Karbantartás és hibakezelés: A rendszer folyamatos karbantartása és a hibák gyors javítása.
-
-## Fejlesztői környezet
-
-- GitHub: Verziókezelés és kollaboráció. A kód távoli tárolása és csapatmunka segítése.
-- MySQL: Az adatbázis kezelésére használt relációs adatbázis-kezelő rendszer. A zenei fájlok és a felhasználói adatok tárolására.
-- JavaScript (Node.js): A backend logika és API fejlesztése JavaScript-ben, Node.js környezetben.
-- Express.js: Backend keretrendszer, amely segíti a RESTful API-k fejlesztését és az alkalmazás működését.
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
