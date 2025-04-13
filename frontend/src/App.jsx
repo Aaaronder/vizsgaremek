@@ -4,18 +4,18 @@ import './App.css'
 
 import BrowsePage from './pages/browsePage/browsePage.jsx'
 import UploadPage from './pages/uploadPage/uploadPage.jsx'
+import LoginPage from './pages/loginPage/loginPage.jsx'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <div className="appocska">
           <Routes>
             <Route path="/browsepage" element={<BrowsePage />} />
             <Route path="/uploadpage" element={<UploadPage />} />
+            <Route path="/loginpage" element={<LoginPage />} />
           </Routes>
-        </div>
       </BrowserRouter>
     </>
   )

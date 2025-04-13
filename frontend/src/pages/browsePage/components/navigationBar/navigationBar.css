@@ -141,12 +141,6 @@
         text-align: center;
     }
 
-    a {
-        text-decoration: none;
-        position: relative;
-        visibility:hidden;
-    }
-
     .accountButton {
         margin-right: 8px;
         text-align: end;

@@ -128,7 +128,7 @@ function App() {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="file1">SONG IMAGE</label>
+                        <label htmlFor="file1">SONG IMAGE <p className='max5'>max. 5mb</p></label>
                         <input className='uploadFile'
                             type="file"
                             id="file1"
