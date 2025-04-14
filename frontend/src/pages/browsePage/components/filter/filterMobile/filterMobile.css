@@ -1,38 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
-.filterButton{
-    background-color: #676186;
-        border-radius: 100%;
-        border: 2px solid #2D2A3B;
-        position: fixed;
-        right: 20px;
-        z-index: 1;
-}
-
-.filterImage{
-    width: 36px;
-    height: 20px;
-    margin-top: 5px;
-}
-
 @media (max-width: 639px){
-    .filterButton{
-        width: 50px;
-        height: 50px;
-        top: 20px;
+    .phoneFilter {
+        width: 100%;
+        height: 150px;
+        background-color: #AEADB9;
+        border-radius: 0 0 22.5px 22.5px;
+        display: flex;
+        flex-direction: column;
     }
+
+    .topPFilter {
+        height: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .phoneSearchBar {
+        width: 75%;
+        height: 25px;
+        background-color: #dfdfdf;
+        border-radius: 22.5px;
+        border: 2px solid #2D2A3B;
+        color: #2D2A3B;
+    }
+    
+    .bottomPFilter {
+        height: 33%;
+        width: 75%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .filter-select-phone {
+        width: 33%;
+        height: 20px;
+        background-color: #dfdfdf;
+        border-radius: 22.5px;
+        border: 2px solid #2D2A3B;
+        color: #2D2A3B;
+    }
+    
+    .bottomButton {
+        height: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .filterButtonThing {
+        width: 150px;
+        height: 30px;
+        border: 0;
+        background-color: #2D2A3B;
+        font-weight: bold;
+        border-radius: 22.5px;
+    }   
 }
 
 @media (min-width: 640px){
-    .filterButton{
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
+    .phoneFilter {
+        width: 100%;
+        height: 300px;
+        background-color: #AEADB9;
+        border-radius: 0 0 22.5px 22.5px;
+        padding-top: 60px;
+        display: flex;
+        flex-direction: column;
     }
+    
+    .topPFilter {
+        height: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .phoneSearchBar {
+        width: 75%;
+        height: 30px;
+        background-color: #dfdfdf;
+        border-radius: 22.5px;
+        border: 2px solid #2D2A3B;
+        color: #2D2A3B;
+    }
+    
+    .bottomPFilter {
+        height: 33%;
+        width: 75%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .filter-select-phone {
+        width: 33%;
+        height: 30px;
+        background-color: #dfdfdf;
+        border-radius: 22.5px;
+        border: 2px solid #2D2A3B;
+        color: #2D2A3B;
+    }
+    
+    .bottomButton {
+        height: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .filterButtonThing {
+        width: 250px;
+        height: 40px;
+        border: 0;
+        background-color: #2D2A3B;
+        font-weight: bold;
+        border-radius: 22.5px;
+    }    
 }
 
-@media (min-width: 1024px){
-    .filterButton{
+@media (min-width: 1024px) {
+    .phoneFilter {
         display: none;
     }
 }

@@ -3,11 +3,13 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import './SongPopup.css'
 import axios from 'axios';
+import { formatDistanceToNow } from 'date-fns';
+import { hu, enUS } from 'date-fns/locale'; // magyar lokalizációhoz
+
 import images1 from '../../../../../assets/images/placeholder.png'
 import tile from '../../../../../assets/images/Logo.png'
 
 const SongPopup = ({ song, onClose }) => {
-
     const [songs, setSongs] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [artists, setArtists] = useState([]);
@@ -52,6 +54,20 @@ const SongPopup = ({ song, onClose }) => {
     const getUploaderName = (songUploaderId) =>
         users.find(user => user.userId === songUploaderId)?.userName || 'Unknown user';
 
+    // Relatív idő formázása
+    const formatUploadTime = (timestamp) => {
+        try {
+            const date = new Date(timestamp);
+            return formatDistanceToNow(date, {
+                addSuffix: true,
+                locale: enUS
+            });
+        } catch (error) {
+            console.error("Error:", error);
+            return timestamp;
+        }
+    };
+
     return (
         <div className='bigPic' onClick={onClose}>
             <div className='pop' onClick={e => e.stopPropagation()}>
@@ -64,6 +80,7 @@ const SongPopup = ({ song, onClose }) => {
                     <p className='popupP'><strong>Album:</strong> {getAlbumName(song.albumId)}</p>
                     <p className='popupP'><strong>Genre:</strong> {getGenreName(song.genreId)}</p>
                     <p className='popupP'><strong>Uploader:</strong> {getUploaderName(song.songUploaderId)}</p>
+                    <p className='popupP' id='floatright'>Uploaded: {formatUploadTime(song.songUploadedAt)}</p>
                     <audio controls className='thing'>
                         <source className='thing' src="horse.ogg" type="audio/ogg" />
                     </audio>
