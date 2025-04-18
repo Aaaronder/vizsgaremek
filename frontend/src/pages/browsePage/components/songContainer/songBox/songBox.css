@@ -1,5 +1,5 @@
 .card {
-    background-color: #8B82B5;
+    background-color: #2D2A3B;
     margin: auto;
     border-radius: 22.5px;
     overflow: hidden;
@@ -78,6 +78,9 @@ h3, p {
     .card {
         width: 45%;
         height: 350px;
+        background-repeat: no-repeat;
+        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0, 0, 0, 1));
+        background-size: cover;
     }
 
     .mobileImage {
@@ -85,32 +88,44 @@ h3, p {
     }
 
     .rest {
-        padding-left: 10px;
+        padding: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        border-radius: 22.5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         position: relative;
     }
 
     .songName {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
-
+        text-align: center;
     }
 
     .artistAlbum {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 400;
-
+        text-align: center;
     }
 
     .uploader {
         font-size: 0.9rem;
         font-weight: 100;
-
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0.5rem;
     }
 }
 
 @media (min-width: 1024px) {
     .card {
         width: min(100%, 350px);
+        background-repeat: no-repeat;
+        mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0, 0, 0, 1));
+        background-size: cover;
     }
 
     .mobileImage {
@@ -118,33 +133,41 @@ h3, p {
     }
 
     .rest {
-        padding-left: 10px;
+        padding: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        border-radius: 22.5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         position: relative;
     }
 
     .songName {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
-
+        text-align: center;
     }
 
     .artistAlbum {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 400;
-
+        text-align: center;
     }
 
     .uploader {
         font-size: 0.9rem;
         font-weight: 100;
-
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0.5rem;
     }
 }
 
 @media (min-width: 1400px) {
     .card {
         width: min(100%, 350px);
-        height: 275px;
         background-repeat: no-repeat;
         mask-image: linear-gradient(225deg, rgba(139, 130, 181, 0.6), rgba(0, 0, 0, 1));
         background-size: cover;

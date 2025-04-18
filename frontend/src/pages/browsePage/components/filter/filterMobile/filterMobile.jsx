@@ -1,7 +1,7 @@
 import './filterMobile.css';
 import React, { useState, useEffect } from 'react';
 
-const FilterMobile = ({ artists, albums, genres, onFilter }) => {
+const FilterDesktop = ({ artists, albums, genres, onFilter }) => {
 
     const [filters, setFilters] = useState({
         artist: '',
@@ -22,8 +22,9 @@ const FilterMobile = ({ artists, albums, genres, onFilter }) => {
         e.preventDefault();
         onFilter(filters);
     };
+
     return (
-        <form className='phoneFilter' action="#">
+        <form className="phoneFilter" onSubmit={handleSubmit}>
             <div className="topPFilter">
                 <input
                     type="text"
@@ -35,10 +36,12 @@ const FilterMobile = ({ artists, albums, genres, onFilter }) => {
                 />
             </div>
             <div className="bottomPFilter">
-                <select name="genre"
+                <select
+                    name="genre"
                     value={filters.genre}
                     onChange={handleChange}
-                    className="filter-select-phone">
+                    className="filter-select-phone"
+                >
                     <option value="">All Genres</option>
                     {genres.map(genre => (
                         <option key={genre.genreId} value={genre.genreId}>
@@ -47,10 +50,12 @@ const FilterMobile = ({ artists, albums, genres, onFilter }) => {
                     ))}
                 </select>
 
-                <select name="artist"
+                <select
+                    name="artist"
                     value={filters.artist}
                     onChange={handleChange}
-                    className="filter-select-phone">
+                    className="filter-select-phone"
+                >
                     <option value="">All Artists</option>
                     {artists.map(artist => (
                         <option key={artist.artistId} value={artist.artistId}>
@@ -59,19 +64,21 @@ const FilterMobile = ({ artists, albums, genres, onFilter }) => {
                     ))}
                 </select>
 
-                <select name="album"
+                <select
+                    name="album"
                     value={filters.album}
                     onChange={handleChange}
-                    className="filter-select-phone">
-                    <option value="">All albums</option>
+                    className="filter-select-phone"
+                >
+                    <option value="">All Albums</option>
                     {albums.map(album => (
                         <option key={album.albumId} value={album.albumId}>
                             {album.albumName}
                         </option>
                     ))}
                 </select>
-
             </div>
+
             <div className="bottomButton">
                 <button className='filterButtonThing' type='submit'>
                     Apply Filters
@@ -81,4 +88,4 @@ const FilterMobile = ({ artists, albums, genres, onFilter }) => {
     );
 };
 
-export default FilterMobile;
+export default FilterDesktop;
