@@ -1,0 +1,392 @@
+@media (max-width: 639px){
+    .bigPic {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        font-family: outfit;
+    }
+    
+    .pop {
+        background: #AEADB9;
+        border-radius: 22.5px;
+        width: 256px;
+        height: min(70%, 750px);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        z-index: -1;
+        border: 2px solid #676186;
+    }
+    
+    .leftP {
+        height: 33%;
+    }
+    
+    .thimage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .centerP {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
+    .thing {
+        background-color: black;
+        border-radius: 50px;
+        height: 40px;
+        width: 80%;
+    }
+    
+    .rightP {
+        height: 17%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .downloadButton {
+        height: 2rem;
+        width: 8rem;
+        font-family: outfit;
+        border-radius: 100px;
+        background-color: #2D2A3B;
+        border: none;
+    
+        cursor: pointer;
+        transition: 0.8s;
+        background-size: 280% auto;
+        background-image:
+            linear-gradient(325deg,
+                #4C4863 5%,
+                #676186 55%,
+                #4C4863 95%);
+        border: none;
+        color: #dfdfdf;
+        box-shadow:
+            0px 0px 20px rgba(103, 97, 134, 0.5),
+            0px 5px 5px -1px rgba(46, 42, 59, 0.25),
+            inset 4px 4px 8px rgba(139, 130, 181, 0.5),
+            inset -4px -4px 8px rgba(76, 72, 99, 0.35);
+    }
+    
+    .downloadButton:hover {
+        background-position: right top;
+    }
+    
+    .downloadButton:is(:focus, :focus-visible, :active) {
+        outline: none;
+        box-shadow:
+            0 0 0 2px #dfdfdf,
+            0 0 0 3px #2D2A3B;
+    }
+    
+    .closeP{
+        position: absolute;
+        left: 50%;
+        bottom: 0%;
+        transform: translate(-50%,-10%);
+        font-style: italic;
+    }
+    
+    .theSongName {
+        margin: 0;
+        color: #2D2A3B;
+    }
+    
+    .popupP {
+        margin: 0;
+        color: #2D2A3B;
+    }
+    
+    .bgtile {
+        position: absolute;
+        overflow: hidden;
+        height: 300px;
+        width: 300px;
+        right: -30px;
+        bottom: -120px;
+        rotate: -20deg;
+        z-index: -2;
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 1399px) and (min-width: 640px){
+    .bigPic {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        font-family: outfit;
+    }
+    
+    .pop {
+        background: #AEADB9;
+        border-radius: 22.5px;
+        width: 50%;
+        height: min(70%, 750px);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        z-index: -1;
+        border: 2px solid #676186;
+    }
+    
+    .leftP {
+        height: 33%;
+    }
+    
+    .thimage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .centerP {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
+    .thing {
+        background-color: black;
+        border-radius: 50px;
+        height: 40px;
+        width: 80%;
+    }
+    
+    .rightP {
+        height: 17%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .downloadButton {
+        height: 2rem;
+        width: 8rem;
+        font-family: outfit;
+        border-radius: 100px;
+        background-color: #2D2A3B;
+        border: none;
+    
+        cursor: pointer;
+        transition: 0.8s;
+        background-size: 280% auto;
+        background-image:
+            linear-gradient(325deg,
+                #4C4863 5%,
+                #676186 55%,
+                #4C4863 95%);
+        border: none;
+        color: #dfdfdf;
+        box-shadow:
+            0px 0px 20px rgba(103, 97, 134, 0.5),
+            0px 5px 5px -1px rgba(46, 42, 59, 0.25),
+            inset 4px 4px 8px rgba(139, 130, 181, 0.5),
+            inset -4px -4px 8px rgba(76, 72, 99, 0.35);
+    }
+    
+    .downloadButton:hover {
+        background-position: right top;
+    }
+    
+    .downloadButton:is(:focus, :focus-visible, :active) {
+        outline: none;
+        box-shadow:
+            0 0 0 2px #dfdfdf,
+            0 0 0 3px #2D2A3B;
+    }
+    
+    .closeP{
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%,-10%);
+        font-style: italic;
+    }
+    
+    .theSongName {
+        margin: 0;
+        color: #2D2A3B;
+    }
+    
+    .popupP {
+        margin: 0;
+        color: #2D2A3B;
+    }
+    
+    .bgtile {
+        position: absolute;
+        overflow: hidden;
+        height: 300px;
+        width: 300px;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: -120px;
+        rotate: -20deg;
+        z-index: -2;
+        opacity: 0.5;
+    }
+}
+
+@media (min-width: 1400px){
+    .bigPic {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        font-family: outfit;
+    }
+    
+    .pop {
+        background: #AEADB9;
+        border-radius: 22.5px;
+        width: min(70%, 40vw);
+        aspect-ratio: 750/256;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        overflow: hidden;
+        z-index: -1;
+        border: 2px solid #676186;
+    }
+    
+    .leftP {
+        width: 33%;
+    }
+    
+    .thimage {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .centerP {
+        width: 45%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: start;
+        padding-left: 1rem;
+    }
+    
+    .thing {
+        background-color: black;
+        border-radius: 50px;
+        width: 100%;
+        height: 4vh;
+    }
+    
+    .rightP {
+        width: 22%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .downloadButton {
+        height: 4vh;
+        width: 6vw;
+        font-family: outfit;
+        font-size: 0.6vw;
+        border-radius: 100px;
+        background-color: #2D2A3B;
+        border: none;
+    
+        cursor: pointer;
+        transition: 0.8s;
+        background-size: 280% auto;
+        background-image:
+            linear-gradient(325deg,
+                #4C4863 5%,
+                #676186 55%,
+                #4C4863 95%);
+        border: none;
+        color: #dfdfdf;
+        box-shadow:
+            0px 0px 20px rgba(103, 97, 134, 0.5),
+            0px 5px 5px -1px rgba(46, 42, 59, 0.25),
+            inset 4px 4px 8px rgba(139, 130, 181, 0.5),
+            inset -4px -4px 8px rgba(76, 72, 99, 0.35);
+    }
+    
+    .downloadButton:hover {
+        background-position: right top;
+    }
+    
+    .downloadButton:is(:focus, :focus-visible, :active) {
+        outline: none;
+        box-shadow:
+            0 0 0 2px #dfdfdf,
+            0 0 0 3px #2D2A3B;
+    }
+    
+    .closeP{
+        position: absolute;
+        left: 50%;
+        bottom: 0%;
+        transform: translate(-50%, -10%);
+        font-style: italic;
+    }
+    
+    .theSongName {
+        margin: 0;
+        color: #2D2A3B;
+        font-size: 1.5vw;
+    }
+    
+    .popupP {
+        margin: 0;
+        color: #2D2A3B;
+        font-size: 0.8vw;
+    }
+    
+    .bgtile {
+        position: absolute;
+        z-index: -2;
+        height: 100%;
+        right: -10%;
+        bottom: -10%;
+        opacity: 0.5;
+        rotate: -20deg;
+    }
+
+    #floatright{
+        position: absolute;
+        top: 1%;
+        right: 1%;
+        font-size: 0.7vw;
+    }
+}
