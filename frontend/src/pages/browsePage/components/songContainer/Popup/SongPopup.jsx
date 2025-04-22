@@ -15,7 +15,7 @@ const SongPopup = ({ song, onClose }) => {
 
     // Kép URL-je a backendről
     const imageUrl = `http://localhost:3000/uploads/images/cover${song.songId}.jpg`;
-    const placeholderImage = "https://i.pinimg.com/736x/2b/c0/8d/2bc08d66290a5166c825feb0837d4006.jpg";
+    const audioUrl = `http://localhost:3000${song.songPath}`;
 
     // Adatok betöltése
     useEffect(() => {
@@ -67,13 +67,42 @@ const SongPopup = ({ song, onClose }) => {
         }
     };
 
+    const handleDownload = async () => {
+        try {
+            // 1. Letöltési URL összeállítása
+            const downloadUrl = `http://localhost:3000/songs/download/${song.songId}`;
+
+            // 2. Fetch hívás a letöltéshez
+            const response = await fetch(downloadUrl);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            // 3. Blob létrehozása és letöltés
+            const blob = await response.blob();
+            const blobUrl = window.URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            link.download = `${song.songName} - ${getArtistName(song.artistId)}.mp3`; // Fájlnév
+            link.click();
+
+            // 4. Memóriafelszabadítás
+            window.URL.revokeObjectURL(blobUrl);
+        } catch (error) {
+            console.error("Letöltési hiba:", error);
+            alert("A letöltés sikertelen. Próbáld újra!");
+        }
+    };
+
     return (
         <div className='bigPic' onClick={onClose}>
             <div className='pop' onClick={e => e.stopPropagation()}>
                 <div className="leftP">
-                    <img 
-                        className='thimage' 
-                        src={imageUrl} 
+                    <img
+                        className='thimage'
+                        src={imageUrl}
                         alt={song.songName}
                         onError={() => setImageError(true)}
                     />
@@ -86,11 +115,11 @@ const SongPopup = ({ song, onClose }) => {
                     <p className='popupP'><strong>Uploader:</strong> {getUploaderName(song.songUploaderId)}</p>
                     <p className='popupP' id='floatright'>Uploaded: {formatUploadTime(song.songUploadedAt)}</p>
                     <audio controls className='thing'>
-                        <source className='thing' src="horse.ogg" type="audio/ogg" />
+                        <source className='thing' src={audioUrl} type="audio/ogg" />
                     </audio>
                 </div>
                 <div className="rightP">
-                    <button className='downloadButton'>Download</button>
+                    <button onClick={handleDownload} className='downloadButton'>Download</button>
                 </div>
                 <img className='bgtile' src={tile} alt="" />
             </div>
