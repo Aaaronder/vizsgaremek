@@ -4,7 +4,8 @@ import './App.css'
 
 import BrowsePage from './pages/browsePage/browsePage.jsx'
 import UploadPage from './pages/uploadPage/uploadPage.jsx'
-import LoginPage from './pages/loginPage/loginPage.jsx'
+import SignUpPage from './pages/auth/signupPage/signUp.jsx'
+import SignInPage from './pages/auth/signinPage/signIn.jsx'
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
           <Routes>
             <Route path="/browsepage" element={<BrowsePage />} />
             <Route path="/uploadpage" element={<UploadPage />} />
-            <Route path="/loginpage" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signin" element={<SignInPage />} />
           </Routes>
       </BrowserRouter>
     </>
