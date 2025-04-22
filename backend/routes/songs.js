@@ -4,6 +4,9 @@ import upload from '../utils/fileStorage.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Express router az útvonalak kezelésére
 const router = express.Router();
 
@@ -107,6 +110,35 @@ router.get('/image/:id', async (req, res) => {
   } catch (error) {
       console.error('Hiba a kép kiszolgálásánál:', error);
       res.status(500).send('Szerverhiba');
+  }
+});
+
+// MP3 letöltése (a browser letölti, nem játssza le)
+router.get('/download/:songId', async (req, res) => {
+  try {
+    // 1. Zene adatainak lekérése az adatbázisból
+    const [song] = await pool.query('SELECT songPath, songName FROM songs WHERE songId = ?', [req.params.songId]);
+    if (!song[0]) return res.status(404).send('Zene nem található');
+
+    // 2. Fizikai elérési út összeállítása
+    const filePath = path.join(__dirname, '../', song[0].songPath);
+    
+    // 3. Fájlnév tisztítása (eltávolítjuk az ékezeteket, szóközöket)
+    const cleanedFileName = song[0].songName
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Ékezetek eltávolítása
+      .replace(/\s+/g, '_') + '.mp3'; // Szóközök aláhúzásra cserélése
+
+    // 4. Letöltés kényszerítése a fejlécekkel
+    res.download(filePath, cleanedFileName, {
+      headers: {
+        'Content-Disposition': `attachment; filename="${cleanedFileName}"`
+      }
+    });
+
+  } catch (error) {
+    console.error('Letöltési hiba:', error);
+    res.status(500).send('Szerverhiba');
+    console.log(filePath);
   }
 });
 
