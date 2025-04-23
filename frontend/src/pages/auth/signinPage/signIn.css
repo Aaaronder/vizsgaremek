@@ -18,6 +18,10 @@
         border: 1px solid rgb(103, 97, 134);
     }
 
+    .tileimagez{
+        display: none;
+    }
+
     .title {
         font-size: 28px;
         font-weight: 600;
@@ -68,6 +72,7 @@
         outline: 0;
         border: 1px solid rgba(103, 97, 134, 0.397);
         border-radius: 10px;
+        font-family: Outfit;
     }
     
     .form .signinlabel .signininput+span {
@@ -144,6 +149,7 @@
         outline: 0;
         border: 1px solid rgba(103, 97, 134, 0.397);
         border-radius: 10px;
+        font-family: Outfit;
     }
     
     .form .signinlabel .signininput+span {
@@ -181,6 +187,16 @@
     .submit:hover {
         background-color: #8B82B5;
         cursor: pointer;
+    }
+
+    .tileimagez{
+        width: 50%;
+        position: absolute;
+        opacity: 0.1;
+        top: -10%;
+        right: -10%;
+        rotate: -12deg;
+        z-index: -1;
     }
 }
 
