@@ -3,6 +3,7 @@ import express from 'express';
 import pool from '../config/db.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { authenticate, isAdmin } from '../middleware/auth.js';
 
 // Express router az útvonalak kezelésére
 const router = express.Router();
@@ -39,41 +40,54 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: 'Felhasználó törölve' });
 });
 
-// Regisztráció
+// backend/routes/users.js
 router.post('/register', async (req, res) => {
-    const { userName, userEmail, userPassword } = req.body; // Mezőnevek illesztése a táblához
+    const { userName, userEmail, userPassword } = req.body;
 
     try {
-        // 1. Jelszó titkosítás
+        // 1. Email egyediség ellenőrzése
+        const [existingUser] = await pool.query(
+            'SELECT * FROM users WHERE userEmail = ?',
+            [userEmail]
+        );
+        if (existingUser.length > 0) {
+            return res.status(400).json({ message: 'Email already exists' });
+        }
+
+        // 2. Jelszó titkosítás
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(userPassword, salt);
 
-        // 2. Felhasználó mentése az adatbázisba
+        // 3. Felhasználó létrehozása
         const [result] = await pool.query(
             'INSERT INTO users (userName, userEmail, userPassword) VALUES (?, ?, ?)',
             [userName, userEmail, hashedPassword]
         );
 
-        // 3. Válasz küldése
         res.status(201).json({
-            message: 'User registered successfully',
+            success: true,
             userId: result.insertId
         });
 
     } catch (error) {
-        console.error('Registration error:', error);
-
-        // Ha az email már foglalt (UNIQUE constraint)
         if (error.code === 'ER_DUP_ENTRY') {
-            return res.status(400).json({ message: 'Email already exists' });
+            return res.status(400).json({ message: 'Az email cím már foglalt' });
         }
-
-        res.status(500).json({ message: 'Registration failed' });
+        console.error('Registration error:', error);
+        res.status(500).json({
+            message: 'Szerverhiba',
+            ...(process.env.NODE_ENV === 'development' && { error: error.message })
+        });
     }
 });
 
 // Bejelentkezés
 router.post('/login', async (req, res) => {
+    console.log('Bejövő login kérés:', req.body); // Debug
+
+    const [users] = await pool.query('SELECT * FROM users WHERE userEmail = ?', [req.body.userEmail]);
+    console.log('Talált felhasználó:', users[0]); // Debug
+
     const { userEmail, userPassword } = req.body; // Mezőnevek illesztése
 
     try {
@@ -93,11 +107,8 @@ router.post('/login', async (req, res) => {
 
         // 3. JWT token generálása
         const token = jwt.sign(
-            {
-                userId: user.userId,  // Mezőnév illesztése
-                isAdmin: user.isAdmin
-            },
-            'your_jwt_secret_key', // Cseréld le valós kulcsra!
+            { userId: user.userId },
+            process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
 
@@ -115,24 +126,43 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Teszteléshez: Összes felhasználó listázása (CSAK FEJLESZTÉS KÖZBEN!)
-router.get('/test/all-users', async (req, res) => {
+// Frissített currentuser végpont
+router.get('/currentuser', authenticate, async (req, res) => {
     try {
-        const [users] = await pool.query('SELECT userId, userName FROM users');
-        res.json(users);
+        const [user] = await pool.query(
+            `SELECT 
+                userId, 
+                userName, 
+                userEmail,
+                isAdmin,
+                userCreated
+             FROM users 
+             WHERE userId = ?`,
+            [req.user.userId]
+        );
+
+        if (!user[0]) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(user[0]);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Database error:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
-// Tesztfelhasználó létrehozása
-router.post('/test/create-test-user', async (req, res) => {
-    const hashedPassword = await bcrypt.hash('test123', 10);
-    await pool.query(
-        'INSERT INTO users (userName, userEmail, userPassword) VALUES (?, ?, ?)',
-        ['testuser', 'test@example.com', hashedPassword]
-    );
-    res.json({ message: 'Test user created' });
+// Új admin végpont példa
+router.get('/admin/users', authenticate, isAdmin, async (req, res) => {
+    try {
+        const [users] = await pool.query(
+            'SELECT userId, userName, userEmail FROM users'
+        );
+        res.json(users);
+    } catch (error) {
+        console.error('Admin error:', error);
+        res.status(500).json({ message: 'Szerverhiba' });
+    }
 });
 
 // Router exportálása
