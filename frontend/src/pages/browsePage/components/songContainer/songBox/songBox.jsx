@@ -65,7 +65,7 @@ function SongBox({ song }) {
                 {isMobile && (
                     <div className="mobileImage">
                         <img 
-                            src={!imageError ? imageUrl : imageUrl} 
+                            src={!imageError ? imageUrl : placeholderImage}
                             alt={song.songName}
                             className="theImage"
                             onError={() => setImageError(true)}

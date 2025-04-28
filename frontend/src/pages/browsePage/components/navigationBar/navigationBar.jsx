@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './navigationBar.css';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -11,14 +11,16 @@ const Navbar = () => {
           <h3 className='stillA' id="browseText">Browse</h3>
         </a>
       </div>
-      <div className="plusButton">
-        <a href="#"><img className='plusImage' src="./src/assets/images/Plus.png" alt="" /></a>
-      </div>
+      <Link to="/upload">
+        <div className="plusButton">
+          <img className='plusImage' src="./src/assets/images/Plus.png" alt="" />
+        </div>
+      </Link>
       <div className="accountButton">
-        <a href="#">
+        <Link to="/account">
           <img src="./src/assets/images/Account.png" alt="" className="accountImage" />
           <h3 className='stillA' id='accountText'>Account</h3>
-        </a>
+        </Link>
       </div>
     </div>
   );

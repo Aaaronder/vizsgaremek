@@ -1,48 +1,68 @@
-.account-box {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.detail-row {
+.infoContainer{
+    width: 400px;
+    aspect-ratio: 1/1.5;
+    background-color: #AEADB9;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    margin-bottom: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
+    flex-direction: column;
+    padding: 20px 0 20px 0;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 22.5px;
+    box-shadow: 0 0 10px 15px #676186;
 }
 
-.detail-label {
-    font-weight: bold;
-    width: 120px;
-    color: #555;
+.infoun{
+    display: flex;
 }
 
-.edit-button {
-    background: #4a76a8;
-    color: white;
+.accInfo{
+    position: absolute;
+    color: #2D2A3B;
+    font-size: 25px;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    font-weight: 700;
+}
+
+.editButton{
+    position: absolute;
+    bottom: 20px;
+    right: 50%;
+    transform: translate(50%);
+    width: 100px;
+    height: 50px;
+    border-radius: 25px;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    font-family: outfit;
+    background-color: #2D2A3B;
+    border: 2px solid #676186;
     cursor: pointer;
-    margin-top: 1rem;
-    transition: background 0.3s;
 }
 
-.edit-button:hover {
-    background: #3a5f8a;
+.infoBlock{
+    width: inherit;
 }
 
-.loading-spinner {
+.upperInfo, .lowerInfo{
+    width: inherit;
+    color: #2D2A3B;
+}
+
+.upperInfo{
+    margin-left: 20%;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.lowerInfo{
     text-align: center;
-    padding: 2rem;
-    color: #666;
-}
-
-.error-message {
-    color: #d32f2f;
-    padding: 1rem;
-    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
 }

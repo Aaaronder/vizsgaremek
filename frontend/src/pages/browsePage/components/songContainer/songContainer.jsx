@@ -16,7 +16,7 @@ function SongContainer({ songs }) {
     return (
         <div className="container">
             {songs.map((song) => (
-                <SongBox key={song.id} song={song} />
+                <SongBox key={song.songId} song={song} />
             ))}
         </div>
     );
