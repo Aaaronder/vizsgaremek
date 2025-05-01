@@ -12,7 +12,6 @@ function SignUpForm() {
         confirmPassword: ''
     });
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -57,8 +56,7 @@ function SignUpForm() {
       }
   
       if (!validateForm()) return;
-  
-      setIsLoading(true);
+
   
       try {
           const response = await axios.post('http://localhost:3000/users/register', {
@@ -72,8 +70,6 @@ function SignUpForm() {
           }
       } catch (err) {
           setError(err.response?.data?.message || 'Regisztráció sikertelen');
-      } finally {
-          setIsLoading(false);
       }
   };
 
@@ -134,8 +130,8 @@ function SignUpForm() {
                     <span>Confirm password</span>
                 </label>
 
-                <button type='submit' className="submit" disabled={isLoading}>
-                    {isLoading ? 'Loading...' : 'Submit'}
+                <button type='submit' className="submit">
+                    Submit
                 </button>
 
                 <p className="signin">Already have an account? <Link className='toSignIn' to="/signin">Sign In</Link></p>
