@@ -1,0 +1,78 @@
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.exe
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.deps.json
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.runtimeconfig.json
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.pdb
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Asio.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Core.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Midi.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\bin\Debug\net8.0-windows\TagLibSharp.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.AssemblyReference.cache
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.GenerateResource.cache
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.AssemblyInfoInputs.cache
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.AssemblyInfo.cs
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.CoreCompileInputs.cache
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPla.CFA819F8.Up2Date
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\refint\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.pdb
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.genruntimeconfig.cache
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\ref\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\MusicPlayerWinForms\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.MainForm.resources
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.exe
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.deps.json
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.runtimeconfig.json
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.pdb
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Asio.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Core.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Midi.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\bin\Debug\net8.0-windows\TagLibSharp.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.AssemblyReference.cache
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.MainForm.resources
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.GenerateResource.cache
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.AssemblyInfoInputs.cache
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.AssemblyInfo.cs
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.CoreCompileInputs.cache
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPla.CFA819F8.Up2Date
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\refint\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.pdb
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.genruntimeconfig.cache
+C:\Users\28011\Desktop\备份1 - 副本\MusicPlayerWinForms\obj\Debug\net8.0-windows\ref\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.AssemblyReference.cache
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.MainForm.resources
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.GenerateResource.cache
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.AssemblyInfoInputs.cache
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.AssemblyInfo.cs
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.csproj.CoreCompileInputs.cache
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\refint\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.pdb
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.exe
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.deps.json
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.runtimeconfig.json
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\MusicPlayerWinForms.pdb
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Asio.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Core.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Midi.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\bin\Debug\net8.0-windows\TagLibSharp.dll
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPla.CFA819F8.Up2Date
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\MusicPlayerWinForms.genruntimeconfig.cache
+C:\Users\28011\Desktop\备份\MusicPlayerWinForms\obj\Debug\net8.0-windows\ref\MusicPlayerWinForms.dll
