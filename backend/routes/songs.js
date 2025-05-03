@@ -23,6 +23,7 @@ router.get('/:id', async (req, res) => {
   res.json(rows[0]);
 });
 
+// Zene feltöltése
 router.post('/',
   upload.fields([
     { name: 'songFile', maxCount: 1 },

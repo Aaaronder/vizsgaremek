@@ -12,10 +12,11 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let uploadPath;
 
+    // MP3-ak és JPG-k külön mappába
     if (file.mimetype === 'audio/mpeg') {
-      uploadPath = path.join(__dirname, '../Uploads/songs');
+      uploadPath = path.join(__dirname, '../uploads/songs');
     } else if (file.mimetype === 'image/jpeg') {
-      uploadPath = path.join(__dirname, '../Uploads/covers');
+      uploadPath = path.join(__dirname, '../uploads/images');
     } else {
       return cb(new Error('Nem támogatott fájltípus'), null);
     }
@@ -32,7 +33,7 @@ const storage = multer.diskStorage({
   }
 });
 
-// Csak MP3 és JPG engedélyezése, specifikus hibaüzenetekkel
+// Csak MP3 és JPG engedélyezése
 const fileFilter = (req, file, cb) => {
   if (file.fieldname === 'songFile' && file.mimetype !== 'audio/mpeg') {
     cb(new Error('Csak MP3 fájlokat fogadunk el!'), false);
@@ -46,5 +47,5 @@ const fileFilter = (req, file, cb) => {
 export default multer({ 
   storage: storage,
   fileFilter: fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 } // 5MB-es limit
+  limits: { fileSize: 5 * 1024 * 1024 } // 5MB-os limit
 });

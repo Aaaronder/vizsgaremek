@@ -1,4 +1,3 @@
-// Modulok importálása
 import express from 'express';
 import pool from '../config/db.js';
 import bcrypt from 'bcrypt';
@@ -7,19 +6,17 @@ import { authenticate, isAdmin } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Összes felhasználó lekérése
+// Alap CRUD műveletek
 router.get('/', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM users');
     res.json(rows);
 });
 
-// Egy adott felhasználó lekérése
 router.get('/:id', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM users WHERE userId = ?', [req.params.id]);
     res.json(rows[0]);
 });
 
-// Új felhasználó hozzáadása
 router.post('/', async (req, res) => {
     const { userName, userEmail, userPassword, userPp } = req.body;
     const [result] = await pool.query(
@@ -29,7 +26,6 @@ router.post('/', async (req, res) => {
     res.json({ userId: result.insertId, userName });
 });
 
-// Felhasználó módosítása
 router.put('/:id', async (req, res) => {
     const { userName, userEmail, userPassword, userPp } = req.body;
     await pool.query(
@@ -39,13 +35,12 @@ router.put('/:id', async (req, res) => {
     res.json({ userId: req.params.id, userName });
 });
 
-// Felhasználó törlése
 router.delete('/:id', async (req, res) => {
     await pool.query('DELETE FROM users WHERE userId = ?', [req.params.id]);
     res.json({ message: 'Felhasználó törölve' });
 });
 
-// Regisztráció
+// Auth funkciók
 router.post('/register', async (req, res) => {
     const { userName, userEmail, userPassword } = req.body;
 
@@ -112,32 +107,16 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Admin: összes user lekérése
-router.get('/admin/users', authenticate, isAdmin, async (req, res) => {
-    try {
-        const [users] = await pool.query('SELECT userId, userName, userEmail FROM users');
-        res.json(users);
-    } catch (error) {
-        console.error('Admin error:', error);
-        res.status(500).json({ message: 'Szerverhiba' });
-    }
-});
-
-// Felhasználó adatainak lekérése
+// Felhasznalo adatai
 router.get('/me', authenticate, async (req, res) => {
     try {
         const userId = req.user.userId;
-        console.log('Kérés /users/me, userId:', userId);
-
-        // Minimális lekérdezés tesztelésre
         const [users] = await pool.query(
             'SELECT userId, userName FROM users WHERE userId = ?',
             [userId]
         );
-        console.log('Lekérdezés eredménye:', users);
 
         if (!users[0]) {
-            console.log('Nincs felhasználó, userId:', userId);
             return res.status(404).json({ message: 'Felhasználó nem található', userId });
         }
 
@@ -148,7 +127,7 @@ router.get('/me', authenticate, async (req, res) => {
     }
 });
 
-// Felhasználó adatainak frissítése
+// Felhasznalo adatai megvaltoztatasa
 router.put('/me', authenticate, async (req, res) => {
     const userId = req.user.userId;
     const { userName, userEmail } = req.body;
@@ -168,5 +147,4 @@ router.put('/me', authenticate, async (req, res) => {
     }
 });
 
-// Router exportálása
 export default router;
