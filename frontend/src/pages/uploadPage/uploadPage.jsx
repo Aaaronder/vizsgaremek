@@ -1,6 +1,3 @@
-//import { useState, useEffect } from 'react'
-//import axios from 'axios'
-
 import NavigationBar from  '../../mainComp/navigationBar/navigationBar.jsx'
 import UploadContainer from  './components/uploadContainer/uploadContainer.jsx'
 

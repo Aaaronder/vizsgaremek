@@ -1,4 +1,4 @@
-.bgtile, .leftP{
+.bgtile, .leftSection{
     pointer-events: none;
     user-select: none;
 }
@@ -31,7 +31,7 @@
         border: 2px solid #676186;
     }
     
-    .leftP {
+    .leftSection {
         height: 33%;
     }
     
@@ -41,7 +41,7 @@
         object-fit: cover;
     }
     
-    .centerP {
+    .middleSection {
         height: 50%;
         width: 100%;
         display: flex;
@@ -57,7 +57,7 @@
         width: 80%;
     }
     
-    .rightP {
+    .rightSection {
         height: 17%;
         display: flex;
         justify-content: center;
@@ -202,7 +202,7 @@
         border: 2px solid #676186;
     }
     
-    .leftP {
+    .leftSection {
         height: 33%;
     }
     
@@ -212,7 +212,7 @@
         object-fit: cover;
     }
     
-    .centerP {
+    .middleSection {
         height: 50%;
         width: 100%;
         display: flex;
@@ -228,7 +228,7 @@
         width: 80%;
     }
     
-    .rightP {
+    .rightSection {
         height: 17%;
         display: flex;
         justify-content: center;
@@ -372,7 +372,7 @@
         border: 2px solid #676186;
     }
     
-    .leftP {
+    .leftSection {
         width: 33%;
     }
     
@@ -382,7 +382,7 @@
         object-fit:cover;
     }
     
-    .centerP {
+    .middleSection {
         width: 45%;
         height: 100%;
         display: flex;
@@ -399,7 +399,7 @@
         height: 4vh;
     }
     
-    .rightP {
+    .rightSection {
         width: 22%;
         display: flex;
         justify-content: center;

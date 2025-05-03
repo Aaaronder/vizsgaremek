@@ -4,40 +4,51 @@ import { UserContext } from '../../../../context/UserContext';
 import './accountBox.css';
 
 const Account = () => {
-  const { user } = useContext(UserContext);
-  const [formData, setFormData] = useState({ userName: '', userEmail: '' });
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
+  // Állapotok inicializálása
+  const { user } = useContext(UserContext);
+  const [formData, setFormData] = useState({ userName: '', userEmail: '' }); 
+  const [userData, setUserData] = useState(null); 
+  const [error, setError] = useState(''); 
+  const [success, setSuccess] = useState(''); 
+
+  // Felhasználói adatok betöltése
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem('token');
+
+        // Felhasználó adatainak lekérése
         const response = await axios.get('http://localhost:3000/users/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserData(response.data);
+
+        // Adatok beállítása
         setFormData({
           userName: response.data.userName,
           userEmail: response.data.userEmail,
         });
       } catch (err) {
-        setError('Hiba az adatok lekérésekor: ' + err.message);
+        setError('Error: ' + err.message);
       }
     };
     fetchUserData();
   }, []);
 
+  // Input mezők változásának kezelése
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Űrlap elküldése, adatok módosítása
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
+
+      // Adatok módosítása a szerveren
       await axios.put(
         'http://localhost:3000/users/me',
         {
@@ -46,19 +57,25 @@ const Account = () => {
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setSuccess('Adatok sikeresen frissítve!');
+      setSuccess('Data successfully updated!');
       setError('');
-      // Frissítjük a UserContext-et
-      const updatedUser = { ...user, userName: formData.userName, userEmail: formData.userEmail };
+
+      // Lokális adatok módosítása
+      const updatedUser = { 
+        ...user, 
+        userName: formData.userName, 
+        userEmail: formData.userEmail 
+      };
       localStorage.setItem('user', JSON.stringify(updatedUser));
     } catch (err) {
-      setError('Hiba a frissítéskor: ' + err.response?.data?.message || err.message);
+      setError('Error: ' + (err.response?.data?.message || err.message));
       setSuccess('');
     }
   };
 
-  if (!userData) return <div>Betöltés...</div>;
-
+  // Betöltés alatti állapot
+  if (!userData) return <div>Loading...</div>;
+  
   return (
     <div className="account-container">
       <h2>Fiók adatok</h2>

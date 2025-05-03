@@ -4,26 +4,33 @@ import axios from 'axios';
 import SongPopup from '../Popup/SongPopup';
 
 function SongBox({ song }) {
-    const [showPopup, setShowPopup] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
-    const [imageError, setImageError] = useState(false);
-    const [albums, setAlbums] = useState([]);
-    const [artists, setArtists] = useState([]);
-    const [users, setUsers] = useState([]);
 
-    // Kép URL-je (ideiglenes helyettesítő, ha nincs)
+    // Állapotok definiálása
+    const [showPopup, setShowPopup] = useState(false); 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 640); 
+    const [imageError, setImageError] = useState(false); 
+    const [albums, setAlbums] = useState([]); 
+    const [artists, setArtists] = useState([]); 
+    const [users, setUsers] = useState([]); 
+
+    // Kép URL-ek definiálása
     const imageUrl = `http://localhost:3000/uploads/images/cover${song.songId}.jpg`;
-    const placeholderImage = "https://assets.exclaim.ca/image/upload/v1704036709/albumcovers.jpg";
 
-    // Adatok betöltése
+    // A komponensek betöltésekor lefutó kódrészlet
     useEffect(() => {
+
+        // Adatok lekérdezése a szerverről
         const fetchData = async () => {
             try {
+
+                // Párhuzamos lekérdezések
                 const [albumsRes, artistsRes, usersRes] = await Promise.all([
                     axios.get('http://localhost:3000/albums'),
                     axios.get('http://localhost:3000/artists'),
                     axios.get('http://localhost:3000/users')
                 ]);
+
+                // Állapotok frissítése
                 setAlbums(albumsRes.data);
                 setArtists(artistsRes.data);
                 setUsers(usersRes.data);
@@ -34,6 +41,7 @@ function SongBox({ song }) {
 
         fetchData();
 
+        // Képernyőméretezés figyelése
         const handleResize = () => {
             setIsMobile(window.innerWidth < 640);
         };
@@ -41,7 +49,7 @@ function SongBox({ song }) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Segédfüggvények
+    // Segédfüggvények az adatok lekérdezéséhez
     const getAlbumName = (albumId) =>
         albums.find(album => album.albumId === albumId)?.albumName || 'Ismeretlen album';
 

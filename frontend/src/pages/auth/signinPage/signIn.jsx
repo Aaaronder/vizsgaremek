@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './signIn.css';
 import tileImagge from '../../../assets/images/Logo.png';
-import { UserContext } from '../../../context/UserContext'; // relatív útvonal
-import { useContext } from 'react';
+import { UserContext } from '../../../context/UserContext';
 
 function SignInForm() {
+
+    // Állapotok kezelése
     const [formData, setFormData] = useState({
         email: '',
-        password: ''
+        password: '' 
     });
-    const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');          
+    const [isLoading, setIsLoading] = useState(false); 
     const navigate = useNavigate();
-    const { setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);   
 
+    // Input mezők változásának kezelése
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -24,29 +26,39 @@ function SignInForm() {
         }));
     };
 
+    // Űrlap elküldése
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setIsLoading(true);
 
         try {
+
+            // Bejelentkezés kérés küldése
             const response = await axios.post('http://localhost:3000/users/login', {
                 userEmail: formData.email,
                 userPassword: formData.password
             });
 
-            // Sikeres bejelentkezés után
+            // Sikeres bejelentkezés esetén:
+            // Token mentése localStorage-ba
             localStorage.setItem('token', response.data.token);
+            
+            // Felhasználói adatok összeállítása
             const userData = {
                 userId: response.data.userId,
                 userName: response.data.userName,
                 isAdmin: response.data.isAdmin
             };
+            
+            // Felhasználói adatok elmentése
             localStorage.setItem('user', JSON.stringify(userData));
-            setUser(userData);
+            setUser(userData);  // Kontextus frissítése
 
+            // Átirányítás
             navigate('/browse');
         } catch (err) {
+            // Hiba esetén hibaüzenet
             setError(err.response?.data?.message || 'Bejelentkezés sikertelen');
         } finally {
             setIsLoading(false);

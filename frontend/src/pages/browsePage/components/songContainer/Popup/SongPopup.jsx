@@ -8,21 +8,25 @@ import { UserContext } from '../../../../../context/UserContext';
 import tile from '../../../../../assets/images/Logo.png'
 
 const SongPopup = ({ song, onClose }) => {
-    const [albums, setAlbums] = useState([]);
-    const [artists, setArtists] = useState([]);
-    const [genres, setGenres] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [imageError, setImageError] = useState(false);
-    const { user } = useContext(UserContext);
 
-    console.log('UserContext tartalma:', user);
+    // Állapotok inicializálása
+    const [albums, setAlbums] = useState([]); 
+    const [artists, setArtists] = useState([]); 
+    const [genres, setGenres] = useState([]); 
+    const [users, setUsers] = useState([]); 
+    const [imageError, setImageError] = useState(false); 
+    const { user } = useContext(UserContext); 
 
+    // URL-ek definiálása
     const imageUrl = `http://localhost:3000/uploads/images/cover${song.songId}.jpg`;
     const audioUrl = `http://localhost:3000${song.songPath}`;
 
+    // Adatok betöltése komponens mountolásakor
     useEffect(() => {
         const fetchData = async () => {
             try {
+
+                // Párhuzamos API hívások
                 const [albumsRes, artistsRes, genresRes, usersRes] = await Promise.all([
                     axios.get('http://localhost:3000/albums'),
                     axios.get('http://localhost:3000/artists'),
@@ -30,6 +34,7 @@ const SongPopup = ({ song, onClose }) => {
                     axios.get('http://localhost:3000/users'),
                 ]);
 
+                // Állapotok frissítése
                 setAlbums(albumsRes.data);
                 setArtists(artistsRes.data);
                 setGenres(genresRes.data);
@@ -42,6 +47,7 @@ const SongPopup = ({ song, onClose }) => {
         fetchData();
     }, []);
 
+    // Segédfüggvények az adatok lekéréséhez
     const getAlbumName = (albumId) =>
         albums.find(album => album.albumId === albumId)?.albumName || 'Unknown album';
 
@@ -54,28 +60,30 @@ const SongPopup = ({ song, onClose }) => {
     const getUploaderName = (songUploaderId) =>
         users.find(user => user.userId === songUploaderId)?.userName || 'Unknown user';
 
+    // Feltöltés idejének formázása
     const formatUploadTime = (timestamp) => {
         try {
-            const date = new Date(timestamp);
-            return formatDistanceToNow(date, {
+            return formatDistanceToNow(new Date(timestamp), {
                 addSuffix: true,
                 locale: enUS
             });
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Dátum formázási hiba:", error);
             return timestamp;
         }
     };
 
+    // Zene letöltése
     const handleDownload = async () => {
         try {
             const downloadUrl = `http://localhost:3000/songs/download/${song.songId}`;
             const response = await fetch(downloadUrl);
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP hiba! státusz: ${response.status}`);
             }
 
+            // Blob létrehozása, letöltés
             const blob = await response.blob();
             const blobUrl = window.URL.createObjectURL(blob);
 
@@ -91,6 +99,7 @@ const SongPopup = ({ song, onClose }) => {
         }
     };
 
+    // Zene törlése
     const handleDelete = async () => {
         if (!window.confirm('Biztosan törölni szeretnéd ezt a zenét?')) {
             return;
@@ -102,6 +111,7 @@ const SongPopup = ({ song, onClose }) => {
                 throw new Error('Nincs token, kérjük jelentkezz be újra.');
             }
 
+            // Törlés a szerverről
             await axios.delete(`http://localhost:3000/songs/${song.songId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -119,7 +129,7 @@ const SongPopup = ({ song, onClose }) => {
     return (
         <div className='bigPic' onClick={onClose}>
             <div className='pop' onClick={e => e.stopPropagation()}>
-                <div className="leftP">
+                <div className="leftSection">
                     <img
                         className='thimage'
                         src={imageUrl}
@@ -127,7 +137,7 @@ const SongPopup = ({ song, onClose }) => {
                         onError={() => setImageError(true)}
                     />
                 </div>
-                <div className="centerP">
+                <div className="middleSection">
                     <h2 className='theSongName'>{song.songName}</h2>
                     <p className='popupP'><strong>Artist:</strong> {getArtistName(song.artistId)}</p>
                     <p className='popupP'><strong>Album:</strong> {getAlbumName(song.albumId)}</p>
@@ -138,7 +148,7 @@ const SongPopup = ({ song, onClose }) => {
                         <source className='thing' src={audioUrl} type="audio/ogg" />
                     </audio>
                 </div>
-                <div className="rightP">
+                <div className="rightSection">
                     <button onClick={handleDownload} className='downloadButton'>Download</button>
                     {(user?.isAdmin === 1 || user?.userId === song.songUploaderId) && (
                         <button onClick={handleDelete} className='deleteButton'>Delete</button>

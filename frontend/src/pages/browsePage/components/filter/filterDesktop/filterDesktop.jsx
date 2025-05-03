@@ -1,15 +1,17 @@
 import './filterDesktop.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const FilterDesktop = ({ artists, albums, genres, onFilter }) => {
-
+  
+  // Szűrő állapotok kezelése
   const [filters, setFilters] = useState({
-    artist: '',
-    album: '',
-    genre: '',
-    searchTerm: ''
+    artist: '',     
+    album: '',       
+    genre: '',       
+    searchTerm: ''   
   });
 
+  // Input mezők változásának kezelése
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters(prev => ({
@@ -18,9 +20,10 @@ const FilterDesktop = ({ artists, albums, genres, onFilter }) => {
     }));
   };
 
+  // Szűrők alkalmazása
   const handleSubmit = (e) => {
     e.preventDefault();
-    onFilter(filters);
+    onFilter(filters); 
   };
 
   return (

@@ -5,6 +5,7 @@ import './songContainer.css';
 
 function SongContainer({ songs }) {
 
+    // Ha esetleg nem lennének számok feltöltve
     if (!songs || songs.length === 0) {
         return (
             <div className="container">

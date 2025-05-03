@@ -3,8 +3,6 @@ import FilterDesktop from './filterDesktop/filterDesktop.jsx';
 import FilterMobile from './filterMobile/filterMobile.jsx';
 
 const Filter = ({ artists, albums, genres, onFilter }) => {
-    // Egyszerű eszköz érzékelés (lehet media query-t is használni)
-    //const isMobile = window.innerWidth <= 768;
 
     return (
         <>

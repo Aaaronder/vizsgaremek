@@ -121,7 +121,7 @@
         align-items: center;
     }
 
-    .inputsama {
+    .ucInputField {
         width: 90%;
         height: 40px;
         margin: auto;
@@ -151,13 +151,13 @@
         padding: 5px;
     }
 
-    .bigahhtext {
+    .ucTitleText {
         color: #2D2A3B;
         margin: 0;
         font-size: 25px;
     }
 
-    .bigahhbutton {
+    .ucUploadButtonbutton {
         width: 250px;
         height: 40px;
         border: 0;
@@ -240,6 +240,7 @@
         background-color: #AEADB9;
         margin: auto;
         padding: 25px;
+        padding-bottom: 75px;
         border-radius: 22.5px;
         position: fixed;
         top: 50%;
@@ -270,7 +271,7 @@
         align-items: center;
     }
 
-    .inputsama {
+    .ucInputField {
         width: 90%;
         height: 40px;
         margin: auto;
@@ -308,7 +309,7 @@
         padding: 5px;
     }
 
-    .bigahhtext {
+    .ucTitleText {
         color: #2D2A3B;
         margin: 0;
         font-size: 50px;
@@ -320,13 +321,14 @@
         color: #2D2A3B;
     }
 
-    .bigahhbutton {
+    .ucUploadButtonbutton {
+        position: absolute;
         width: 250px;
         height: 40px;
         border: 0;
         background-color: #2D2A3B;
         font-weight: bold;
-        transform: translateY(10px);
+        bottom: 17px;
     }
 
     .leaf1,
@@ -453,7 +455,7 @@
         width: 100%;
     }
 
-    .inputsama {
+    .ucInputField {
         width: 90%;
         height: 40px;
         margin: auto;
@@ -545,7 +547,7 @@
         padding: 5px;
     }
 
-    .bigahhtext {
+    .ucTitleText {
         color: #2D2A3B;
         position: absolute;
         top: 5%;
@@ -555,7 +557,7 @@
         font-size: 50px;
     }
 
-    .bigahhbutton {
+    .ucUploadButtonbutton {
         position: absolute;
         width: 250px;
         height: 40px;
@@ -568,11 +570,11 @@
         transition: 0.8s;
     }
 
-    .bigahhbutton:hover {
+    .ucUploadButtonbutton:hover {
         cursor: pointer;
     }
 
-    .bigahhbutton:is(:focus, :focus-visible, :active) {
+    .ucUploadButtonbutton:is(:focus, :focus-visible, :active) {
         outline: none;
         box-shadow:
             0 0 0 2px #dfdfdf,

@@ -6,14 +6,15 @@ import tileImagge from '../../../assets/images/Logo.png';
 
 function SignUpForm() {
     const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+        username: '',         
+        email: '',             
+        password: '',         
+        confirmPassword: '' 
     });
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
+    const [error, setError] = useState(''); 
+    const navigate = useNavigate();         
 
+    // Input mezők változásának kezelése
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -22,22 +23,28 @@ function SignUpForm() {
         }));
     };
 
+    // Űrlap validálása
     const validateForm = () => {
+
+        // Kötelező mezők ellenőrzése
         if (!formData.username || !formData.email || !formData.password) {
             setError('Minden mező kitöltése kötelező');
             return false;
         }
 
+        // Jelszók egyezésének ellenőrzése
         if (formData.password !== formData.confirmPassword) {
             setError('A jelszavak nem egyeznek');
             return false;
         }
 
+        // Jelszó hossz ellenőrzése
         if (formData.password.length < 6) {
             setError('A jelszónak legalább 6 karakter hosszúnak kell lennie');
             return false;
         }
 
+        // Email formátum ellenőrzése
         if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
             setError('Érvénytelen email cím');
             return false;
@@ -46,32 +53,37 @@ function SignUpForm() {
         return true;
     };
 
+    // Űrlap elküldése
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      setError('');
-  
-      if (formData.password !== formData.confirmPassword) {
-          setError("A jelszavak nem egyeznek!");
-          return;
-      }
-  
-      if (!validateForm()) return;
+        e.preventDefault();
+        setError('');
+    
+        // Jelszó egyezés ellenőrzése
+        if (formData.password !== formData.confirmPassword) {
+            setError("A jelszavak nem egyeznek!");
+            return;
+        }
+    
+        // Űrlap validálása
+        if (!validateForm()) return;
 
-  
-      try {
-          const response = await axios.post('http://localhost:3000/users/register', {
-              userName: formData.username, // formData-ból vesszük az értéket
-              userEmail: formData.email,
-              userPassword: formData.password
-          });
-  
-          if (response.data.success) {
-              navigate('/');
-          }
-      } catch (err) {
-          setError(err.response?.data?.message || 'Regisztráció sikertelen');
-      }
-  };
+        // Regisztráció kérés küldése
+        try {
+            const response = await axios.post('http://localhost:3000/users/register', {
+                userName: formData.username,
+                userEmail: formData.email,
+                userPassword: formData.password
+            });
+    
+            // Sikeres regisztráció esetén átirányítás
+            if (response.data.success) {
+                navigate('/');
+            }
+        } catch (err) {
+            // Hiba kezelése
+            setError(err.response?.data?.message || 'Regisztráció sikertelen');
+        }
+    };
 
     return (
         <div className="form-container">
