@@ -107,12 +107,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Felhasznalo adatai
+// Felhasználó adatai
 router.get('/me', authenticate, async (req, res) => {
     try {
         const userId = req.user.userId;
         const [users] = await pool.query(
-            'SELECT userId, userName FROM users WHERE userId = ?',
+            'SELECT userId, userName, userEmail, userCreated FROM users WHERE userId = ?',
             [userId]
         );
 
@@ -120,14 +120,35 @@ router.get('/me', authenticate, async (req, res) => {
             return res.status(404).json({ message: 'Felhasználó nem található', userId });
         }
 
-        res.json({ userId: users[0].userId, userName: users[0].userName });
+        res.json({
+            userId: users[0].userId,
+            userName: users[0].userName,
+            userEmail: users[0].userEmail,
+            userCreated: users[0].userCreated
+        });
     } catch (error) {
         console.error('Hiba:', error);
         res.status(500).json({ message: 'Szerver hiba: ' + error.message });
     }
 });
 
-// Felhasznalo adatai megvaltoztatasa
+// Felhasználó feltöltött dalainak száma
+router.get('/me/songs', authenticate, async (req, res) => {
+    try {
+        const userId = req.user.userId;
+        const [result] = await pool.query(
+            'SELECT COUNT(*) as songCount FROM songs WHERE songUploaderId = ?',
+            [userId]
+        );
+
+        res.json({ songCount: result[0].songCount });
+    } catch (error) {
+        console.error('Hiba a dalok lekérdezésekor:', error);
+        res.status(500).json({ message: 'Szerver hiba: ' + error.message });
+    }
+});
+
+// Felhasználó adatai megváltoztatása
 router.put('/me', authenticate, async (req, res) => {
     const userId = req.user.userId;
     const { userName, userEmail } = req.body;
