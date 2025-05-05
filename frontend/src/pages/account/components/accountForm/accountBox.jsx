@@ -1,117 +1,120 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { UserContext } from '../../../../context/UserContext';
+import { formatDistanceToNow } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import './accountBox.css';
+import { UserContext } from '../../../../context/UserContext';
 
 const Account = () => {
-
-  // Állapotok inicializálása
   const { user } = useContext(UserContext);
-  const [formData, setFormData] = useState({ userName: '', userEmail: '' }); 
-  const [userData, setUserData] = useState(null); 
-  const [error, setError] = useState(''); 
-  const [success, setSuccess] = useState(''); 
+  const [userData, setUserData] = useState({
+    userName: '',
+    userEmail: '',
+    userCreated: '',
+    songCount: 0
+  });
+  const [error, setError] = useState('');
 
-  // Felhasználói adatok betöltése
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-
-        // Felhasználó adatainak lekérése
-        const response = await axios.get('http://localhost:3000/users/me', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUserData(response.data);
-
-        // Adatok beállítása
-        setFormData({
-          userName: response.data.userName,
-          userEmail: response.data.userEmail,
-        });
-      } catch (err) {
-        setError('Error: ' + err.message);
-      }
-    };
-    fetchUserData();
-  }, []);
-
-  // Input mezők változásának kezelése
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  // Űrlap elküldése, adatok módosítása
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Feltöltés idejének formázása
+  const formatUploadTime = (timestamp) => {
     try {
-      const token = localStorage.getItem('token');
-
-      // Adatok módosítása a szerveren
-      await axios.put(
-        'http://localhost:3000/users/me',
-        {
-          userName: formData.userName,
-          userEmail: formData.userEmail,
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setSuccess('Data successfully updated!');
-      setError('');
-
-      // Lokális adatok módosítása
-      const updatedUser = { 
-        ...user, 
-        userName: formData.userName, 
-        userEmail: formData.userEmail 
-      };
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-    } catch (err) {
-      setError('Error: ' + (err.response?.data?.message || err.message));
-      setSuccess('');
+      return formatDistanceToNow(new Date(timestamp), {
+        addSuffix: true,
+        locale: enUS
+      });
+    } catch (error) {
+      console.error("Dátum formázási hiba:", error);
+      return timestamp;
     }
   };
 
-  // Betöltés alatti állapot
-  if (!userData) return <div>Loading...</div>;
-  
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!user?.userId) {
+        setError('Nincs bejelentkezett felhasználó');
+        return;
+      }
+
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setError('Nincs érvényes token');
+          return;
+        }
+
+        // Felhasználói adatok lekérése
+        const userResponse = await axios.get('http://localhost:3000/users/me', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        // Feltöltött dalok számának lekérése
+        const songsResponse = await axios.get('http://localhost:3000/users/me/songs', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        setUserData({
+          userName: userResponse.data.userName,
+          userEmail: userResponse.data.userEmail,
+          userCreated: userResponse.data.userCreated,
+          songCount: songsResponse.data.songCount
+        });
+      } catch (err) {
+        setError(err.response?.data?.message || 'Hiba az adatok lekérése közben');
+      }
+    };
+
+    fetchUserData();
+  }, [user]);
+
   return (
-    <div className="account-container">
-      <h2>Fiók adatok</h2>
-      {error && <p className="error">{error}</p>}
-      {success && <p className="success">{success}</p>}
-      <div className="user-info">
-        <p><strong>Felhasználónév:</strong> {userData.userName}</p>
-        <p><strong>Email:</strong> {userData.userEmail}</p>
-        <p><strong>Fiók létrehozva:</strong> {new Date(userData.userCreated).toLocaleDateString()}</p>
-        <p><strong>Feltöltött zenék száma:</strong> {userData.uploadedSongs}</p>
+    <>
+      <div className="accountInfoContainer">
+        <div className="accinfo">
+          <h2 className='accInfoh2'>Account Information</h2>
+          {error && <p className="error-message">{error}</p>}
+          <div className="personal">
+            <div className="personalInfo">
+              <div className="pinfo1">
+                <h3>Username:</h3>
+              </div>
+              <div className="pinfo2">
+                <h3>{user.userName || 'N/A'}</h3>
+              </div>
+            </div>
+
+            <div className="personalInfo">
+              <div className="pinfo1">
+                <h3>Email:</h3>
+              </div>
+              <div className="pinfo2">
+                <h3>{userData.userEmail || 'N/A'}</h3>
+              </div>
+            </div>
+
+            <div className="personalInfo">
+              <div className="pinfo1">
+                <h3>Account created:</h3>
+              </div>
+              <div className="pinfo2">
+                <h3>{userData.userCreated ? formatUploadTime(userData.userCreated) : 'N/A'}</h3>
+              </div>
+            </div>
+
+            <div className="personalInfo">
+              <div className="pinfo1">
+                <h3>Songs uploaded:</h3>
+              </div>
+              <div className="pinfo2">
+                <h3>{userData.songCount}</h3>
+              </div>
+            </div>
+          </div>
+          <div className="editbuttondiv">
+            <button className='editPersonalInfo'>Edit</button>
+          </div>
+        </div>
       </div>
-      <h3>Adatok módosítása</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Felhasználónév:</label>
-          <input
-            type="text"
-            name="userName"
-            value={formData.userName}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="userEmail"
-            value={formData.userEmail}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <button type="submit">Mentés</button>
-      </form>
-    </div>
+    </>
   );
 };
 

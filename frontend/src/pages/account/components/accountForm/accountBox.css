@@ -1,0 +1,151 @@
+@media (max-width: 639px){
+    .accountInfoContainer{
+        width: 100vw;
+        height: 100vh;
+        background-color: #2D2A3B;
+    }
+
+    .accinfo{
+        width: 80%;
+        height: 60%;
+        background-color: #201d29;
+        border-radius: 22.5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -55%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .accInfoh2{
+        margin: 0;
+    }
+
+    .editbuttondiv{
+        width: 100%;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .personal{
+        width: 90%;
+        height: 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .editPersonalInfo{
+        height: 80%;
+        width: 25%;
+        padding: 0;
+        background-color: #AEADB9;
+        border: 2px solid ;
+        color: #2D2A3B;
+        border-radius: 100px;
+        cursor: pointer;
+    }
+
+    .personalInfo{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+    }
+
+    .pinfo1{
+        text-align: end;
+        padding-right: 10px;
+    }
+
+    .pinfo2{
+        padding-left: 10px;
+        text-align: start;
+    }
+
+    .pinfo1, .pinfo2{
+        width: 100%;
+    }
+}
+
+@media (min-width: 640px){
+    .accountInfoContainer{
+        width: 100vw;
+        height: 100vh;
+        background-color: #2D2A3B;
+    }
+
+    .accinfo{
+        width: min(70%, 500px);
+        height: 60%;
+        background-color: #201d29;
+        border-radius: 22.5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -55%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .accInfoh2{
+        margin: 0;
+    }
+
+    .editbuttondiv{
+        width: 100%;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .personal{
+        width: 90%;
+        height: 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .editPersonalInfo{
+        height: 80%;
+        width: 25%;
+        padding: 0;
+        background-color: #AEADB9;
+        border: 2px solid ;
+        color: #2D2A3B;
+        border-radius: 100px;
+        cursor: pointer;
+    }
+
+    .personalInfo{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+    }
+
+    .pinfo1{
+        text-align: end;
+        padding-right: 10px;
+    }
+
+    .pinfo2{
+        padding-left: 10px;
+        text-align: start;
+    }
+
+    .pinfo1, .pinfo2{
+        width: 100%;
+    }
+}
