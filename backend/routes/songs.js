@@ -223,4 +223,61 @@ router.get('/download/:songId', async (req, res) => {
   }
 });
 
+// Zene módosítása (PATCH)
+router.patch('/:id', authenticate, async (req, res) => {
+  try {
+    const { songName, artistId, albumId, genreId } = req.body;
+    const songId = req.params.id;
+    const userId = req.user.userId;
+
+    // Ellenőrizzük, hogy a dal létezik-e
+    const [song] = await pool.query('SELECT songUploaderId FROM songs WHERE songId = ?', [songId]);
+    if (!song[0]) {
+      return res.status(404).json({ message: 'Zene nem található' });
+    }
+
+    // Felhasználó admin jogosultságának ellenőrzése
+    const [user] = await pool.query('SELECT isAdmin FROM users WHERE userId = ?', [userId]);
+    if (!user[0]) {
+      return res.status(404).json({ message: 'Felhasználó nem található' });
+    }
+
+    // Jogosultság ellenőrzése
+    if (song[0].songUploaderId !== userId && user[0].isAdmin !== 1) {
+      return res.status(403).json({ message: 'Nincs jogosultság a módosításhoz' });
+    }
+
+    // Érvénytelen ID-k ellenőrzése
+    if (artistId && !(await pool.query('SELECT artistId FROM artists WHERE artistId = ?', [artistId]))[0].length) {
+      return res.status(400).json({ message: 'Érvénytelen előadó ID' });
+    }
+    if (albumId && !(await pool.query('SELECT albumId FROM albums WHERE albumId = ?', [albumId]))[0].length) {
+      return res.status(400).json({ message: 'Érvénytelen album ID' });
+    }
+    if (genreId && !(await pool.query('SELECT genreId FROM genres WHERE genreId = ?', [genreId]))[0].length) {
+      return res.status(400).json({ message: 'Érvénytelen műfaj ID' });
+    }
+
+    // Csak a megadott mezőket frissítjük
+    const updates = {};
+    if (songName) updates.songName = songName;
+    if (artistId) updates.artistId = artistId;
+    if (albumId !== undefined) updates.albumId = albumId; // Lehet null
+    if (genreId) updates.genreId = genreId;
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ message: 'Nincs frissítendő adat' });
+    }
+
+    const fields = Object.keys(updates).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(updates), songId];
+
+    await pool.query(`UPDATE songs SET ${fields} WHERE songId = ?`, values);
+    res.json({ songId, songName: songName || song[0].songName });
+  } catch (error) {
+    console.error('Módosítási hiba:', error);
+    res.status(500).json({ message: 'Szerver hiba' });
+  }
+});
+
 export default router;
