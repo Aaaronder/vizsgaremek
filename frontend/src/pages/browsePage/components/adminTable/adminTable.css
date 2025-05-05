@@ -1,11 +1,17 @@
 @media (max-width: 639px) {
     .adminTable{
-        margin: 50px;
+        margin-top: 50px;
         margin-bottom: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        overflow-x:auto;
+    }
+
+    .buttonCol{
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -22,9 +28,9 @@
 table{
     background-color: #2D2A3B;
     border-radius: 10px;
-    width: 75%;
     color: #2D2A3B;
     table-layout: fixed;
+    width: 100%;
 }
 
 thead{
