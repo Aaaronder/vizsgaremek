@@ -5,6 +5,7 @@ import NavigationBar from '../../mainComp/navigationBar/navigationBar.jsx';
 import SongContainer from './components/songContainer/songContainer.jsx';
 import Filter from './components/filter/filter.jsx';
 import SignOutButton from '../../mainComp/signout/signout.jsx'
+import AdminTable from './components/adminTable/adminTable.jsx'
 import './browsePage.css';
 
 function BrowsePage() {
@@ -115,7 +116,7 @@ function BrowsePage() {
             genres={genres}
             onFilter={handleFilter}
           />
-
+  
           {filteredSongs.length > 0 ? (
             <SongContainer songs={filteredSongs} />
           ) : (
@@ -123,6 +124,7 @@ function BrowsePage() {
           )}
         </div>
       </div>
+      {currentUser?.isAdmin === 1 && <AdminTable></AdminTable>}
     </>
   );
 }
