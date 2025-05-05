@@ -1,76 +1,80 @@
-# Outclass - Adatbázis Dokumentáció
+# Outclass - Adatbázis README
 
-## Áttekintés
+## Projekt áttekintés
+Az Outclass adatbázis egy MySQL/MariaDB alapú relációs adatbázis, amely a zenei streaming platform adatait tárolja, beleértve a felhasználókat, zenéket, előadókat, albumokat, műfajokat és lejátszási listákat.
 
-Ez a dokumentum az Outclass zenei streaming platform adatbázisát ismerteti. Az adatbázis előadókkal, albumokkal, dalokkal, műfajokkal, felhasználókkal és lejátszási listákkal kapcsolatos információkat tárol.
+## Adatbázis struktúra
+Az adatbázis 6 fő táblából áll, amelyek a következő adatokat tárolják:
 
-## Adatbázis Sémája
+### Users
+- **Cél**: Felhasználók adatainak tárolása.
+- **Oszlopok**:
+  - `userId`: INT, elsődleges kulcs
+  - `userName`: VARCHAR(255)
+  - `userEmail`: VARCHAR(255)
+  - `userPassword`: VARCHAR(255), titkosítva
+  - `isAdmin`: TINYINT(1)
+  - `userCreated`: TIMESTAMP
 
-### Táblák
+### Artists
+- **Cél**: Előadók tárolása.
+- **Oszlopok**:
+  - `artistId`: INT, elsődleges kulcs
+  - `artistName`: VARCHAR(255)
 
-1. artists (előadók)
-   - Leírás: Előadók adatait tárolja
-   - Mezők:
-     * artistId (INT, PRIMARY KEY) - Az előadó egyedi azonosítója
-     * artistName (VARCHAR(255)) - Az előadó neve
+### Albums
+- **Cél**: Albumok tárolása.
+- **Oszlopok**:
+  - `albumId`: INT, elsődleges kulcs
+  - `albumName`: VARCHAR(255)
+  - `artistId`: INT, idegen kulcs
 
-2. albums (albumok)
-   - Leírás: Album információkat tárol, kapcsolódik az előadókhoz
-   - Mezők:
-     * albumId (INT, PRIMARY KEY) - Az album egyedi azonosítója
-     * albumName (VARCHAR(255)) - Az album címe
-     * artistId (INT, FOREIGN KEY) - Az előadó azonosítója
+### Genres
+- **Cél**: Műfajok tárolása.
+- **Oszlopok**:
+  - `genreId`: INT, elsődleges kulcs
+  - `genreName`: VARCHAR(255)
 
-3. genres (műfajok)
-   - Leírás: Elérhető zenei műfajok listája
-   - Mezők:
-     * genreId (INT, PRIMARY KEY) - A műfaj egyedi azonosítója
-     * genreName (VARCHAR(255)) - A műfaj neve
+### Songs
+- **Cél**: Zenék és metaadatok tárolása.
+- **Oszlopok**:
+  - `songId`: INT, elsődleges kulcs
+  - `songName`: VARCHAR(255)
+  - `artistId`, `albumId`, `genreId`, `songUploaderId`: INT, idegen kulcsok
+  - `songPath`, `songImage`: VARCHAR(255)
+  - `songUploadedAt`: TIMESTAMP
 
-4. users (felhasználók)
-   - Leírás: Platform felhasználói fiókok
-   - Mezők:
-     * userId (INT, PRIMARY KEY) - A felhasználó egyedi azonosítója
-     * userName (VARCHAR(255)) - A felhasználó megjelenítendő neve
-     * userEmail (VARCHAR(255)) - A felhasználó email címe (egyedi)
-     * userPassword (VARCHAR(255)) - A jelszó hash-elt formában
-     * isAdmin (TINYINT(1)) - Admin jogosultság (1 = admin, 0 = sima felhasználó)
-     * userCreated (TIMESTAMP) - A fiók létrehozásának időbélyege
-
-5. songs (dalok)
-   - Leírás: Az összes dal információja metaadatokkal együtt
-   - Mezők:
-     * songId (INT, PRIMARY KEY) - A dal egyedi azonosítója
-     * songName (VARCHAR(255)) - A dal címe
-     * artistId (INT, FOREIGN KEY) - Az előadó azonosítója
-     * albumId (INT, FOREIGN KEY) - Az album azonosítója (opcionális)
-     * genreId (INT, FOREIGN KEY) - A műfaj azonosítója
-     * songUploaderId (INT, FOREIGN KEY) - A feltöltő felhasználó azonosítója
-     * songPath (VARCHAR(255)) - A dal fájl elérési útja
-     * songImage (VARCHAR(255)) - A dalhoz tartozó borítóképe
-     * songUploadedAt (TIMESTAMP) - A feltöltés időbélyege
-
-6. playlists (lejátszási listák)
-   - Leírás: Felhasználók által létrehozott lejátszási listák
-   - Mezők:
-     * plId (INT, PRIMARY KEY) - A lejátszási lista egyedi azonosítója
-     * plName (VARCHAR(255)) - A lejátszási lista neve
-     * plOwnerId (INT, FOREIGN KEY) - A tulajdonos felhasználó azonosítója
-     * plCreated (TIMESTAMP) - A lista létrehozásának időbélyege
-     * songId (INT, FOREIGN KEY) - A lejátszási listában szereplő dal azonosítója
+### Playlists
+- **Cél**: Lejátszási listák tárolása.
+- **Oszlopok**:
+  - `plId`: INT, elsődleges kulcs
+  - `plName`: VARCHAR(255)
+  - `plOwnerId`: INT, idegen kulcs
+  - `plCreated`: TIMESTAMP
+  - `songIds`: INT, idegen kulcs
 
 ## Kapcsolatok
+- `Users` -> `Songs` (feltöltő)
+- `Users` -> `Playlists` (tulajdonos)
+- `Artists` -> `Albums`, `Songs`
+- `Albums` -> `Songs`
+- `Genres` -> `Songs`
+- `Songs` -> `Playlists`
 
-- Előadó (1) → Album (n): Egy előadónak több albuma lehet
-- Előadó (1) → Dal (n): Egy előadónak több dala lehet
-- Album (1) → Dal (n): Egy albumhoz több dal tartozhat
-- Felhasználó (1) → Lejátszási lista (n): Egy felhasználónak több lejátszási listája lehet
+## Telepítés
+1. Telepítsd a XAMPP-ot, és indítsd el az Apache és MySQL szolgáltatásokat.
+2. Nyisd meg a phpMyAdmin felületet a MySQL "Admin" gombjával.
+3. Importáld a `outclass.sql` fájlt a repository-ból.
+4. Ellenőrizd a `.env` fájlban a következő beállításokat:
+   ```env
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=
+   DB_NAME=outclass
+   DB_PORT=3306
+   ```
 
-Alapértelmezett jelszó (minden fiókhoz): password (hash-elt formában)
-
-## Technikai információk
-
-- Adatbázis rendszer: MariaDB 10.4.32
-- Karakterkészlet: utf8mb4
-- Collation: utf8mb4_general_ci
-- PHP verzió: 8.2.12
+## Fejlesztési megjegyzések
+- Az adatbázis normalizált, az adatredundancia elkerülése érdekében.
+- Az idegen kulcsok biztosítják az adatok integritását.
+- A jelszavak bcrypt titkosítással vannak tárolva.
